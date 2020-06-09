@@ -1,3 +1,4 @@
+
 #ifndef _CONSTANTES_HPP
 #define _CONSTANTES_HPP
 
@@ -46,5 +47,5 @@ string const MSSG_ERR_UNE_COMPOSANTE_MINIMUM = "Il doit y avoir au moins une com
 string const MSSG_ERR_VITESSE_INVALIDE = "Ce n'est pas une vitesse valide.";
 
 
-
 #endif
+
