@@ -17,6 +17,6 @@ devoir1: main.cpp Constantes.hpp
 
 
 clean :
-	rm -rf test_pile test_file
-	rm -f lab4
+	rm -f *.o
+	rm -f devoir1
 
