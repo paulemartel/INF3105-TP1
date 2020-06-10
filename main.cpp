@@ -2,10 +2,14 @@
 #include <string>
 #include "Constantes.hpp"
 
+//declaration de fonctions
+double demandeDouble();
+
+
 int main(int argc, const char** args){
     bool finProg = false;
     double vitesseComposante = 0;
-    double couple = -1;
+    double couple = 0;
     std::string reponse("");
 
 
@@ -14,29 +18,21 @@ int main(int argc, const char** args){
 
 
         //demande de requetes a l'utilisateur
-        bool finRequete = false;
+        std::cout << MSSG_REQUETE_VITESSE << std::endl;
+        vitesseComposante = demandeDouble();
 
-        while(!finRequete){
+        std::cout << MSSG_REQUETE_COUPLE << std::endl;
+        couple = demandeDouble();
 
-            try{
+        //verification si les deux valeurs sont du meme signe
+        while(!(vitesseComposante >= 0 && couple >= 0) || (vitesseComposante < 0 && couple < 0)){
 
-                std::cout << MSSG_REQUETE_VITESSE << std::endl;
-                std::cin >> vitesseComposante;  //gestion d'erreur?
+            std:cout << MSSG_ERR_MEME_SIGNE << std::endl;
+            std::cout << MSSG_REQUETE_COUPLE << std::endl;
+            couple = demandeDouble(); //marche pas??
 
-                std::cout << MSSG_REQUETE_COUPLE << std::endl;
-                std::cin >> couple;
+        }
 
-                while(couple < 0){
-                    std::cout << MSSG_ERR_COUPLE_INVALIDE << std::endl;
-                    std::cout << MSSG_REQUETE_COUPLE << std::endl;
-                    std::cin >> couple;
-                }
-                finRequete = true;
-            } catch(std::exception e){
-                std::cout << "Erreur mauvaise allocation" << std::endl;
-
-            }    
-        } 
 
 
 
@@ -46,9 +42,29 @@ int main(int argc, const char** args){
         if(reponse.compare("n") == 0){
             finProg = true;
         }
+    }
+}
 
-
-
+/**
+Fonction qui se charge de s'assurer que la valeur entree en input par l'utilisateur
+est bel et bien un double. Si ce n'est pas le cas, demande a l'utilisateur d'entrer
+une nouvelle valeur
+retourne un double
+**/
+double demandeDouble(){
+    double nombre;
+    while(!(std::cin >> nombre)){
+        std::cout << "Pas un double Veuillez entrer une nouvelle valeur" << std::endl;
+        cin.clear();
+        cin.ignore(100000, '\n');
     }
 
+    return nombre;
 }
+
+
+
+
+
+
+
