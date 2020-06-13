@@ -1,9 +1,10 @@
 #include "Vis.hpp"
 
 Vis::Vis (int nombreSillon) {
-    _nombreSillon = nombreSillon;
+    nombreDentOuSillon = nombreSillon;
 }
 
 int Vis::getNombreSillon() {
-    return _nombreSillon;
+    return nombreDentOuSillon;
 }
+

@@ -1,5 +1,15 @@
+#ifndef _OBJET_HPP
+#define _OBJET_HPP
+
+#include <string>
+using namespace std;
+
 class Objet {
 
-// on va peut-etre vouloir faire des methodes virtuelles ici... virtual? Voir plus tard
-
+    //attributs
+public:
+    string nom;
+    int nombreDentOuSillon;
 };
+
+#endif

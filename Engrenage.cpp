@@ -1,10 +1,10 @@
 #include "Engrenage.hpp"
 
 Engrenage::Engrenage (int nombreDent) {
-    _nombreDent = nombreDent;
+    nombreDentOuSillon = nombreDent;
 }
 
 int Engrenage::getNombreDent() {
-    return _nombreDent;
+    return nombreDentOuSillon;
 }
 
