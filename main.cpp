@@ -4,10 +4,12 @@
 
 //declaration de fonctions
 double demandeDouble();
+bool memeSigne(double num1,double num2);
 
 
 int main(int argc, const char** args){
     bool finProg = false;
+    bool coupleValide = true;
     double vitesseComposante = 0;
     double couple = 0;
     std::string reponse("");
@@ -23,13 +25,16 @@ int main(int argc, const char** args){
 
         std::cout << MSSG_REQUETE_COUPLE << std::endl;
         couple = demandeDouble();
+        coupleValide = memeSigne(vitesseComposante,couple);
+
 
         //verification si les deux valeurs sont du meme signe
-        while(!(vitesseComposante >= 0 && couple >= 0) || (vitesseComposante < 0 && couple < 0)){
+        while(!coupleValide){
 
             std:cout << MSSG_ERR_MEME_SIGNE << std::endl;
             std::cout << MSSG_REQUETE_COUPLE << std::endl;
-            couple = demandeDouble(); //marche pas??
+            couple = demandeDouble();
+            coupleValide = memeSigne(vitesseComposante,couple);
 
         }
 
@@ -61,6 +66,17 @@ double demandeDouble(){
 
     return nombre;
 }
+/**
+Fonction qui vérifie si deux doubles est du meme signe
+return true si c'est le cas sinon false
+**/
+bool memeSigne(double num1, double num2){
+
+    return ((num1 >= 0 && num2 >= 0) 
+        || (num1 < 0 && num2 < 0));
+
+}
+
 
 
 
