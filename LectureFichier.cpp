@@ -25,24 +25,25 @@ int main(int argc, char * argv []) {
                 int position = ligne.find(" ");
                 string nombre = ligne.substr(position + 1); 
                 int nombreEnChiffres = stoi(nombre);
-                Engrenage * piece = new Engrenage(nombreEnChiffres);
+                Engrenage * piece = 
+                    new Engrenage("engrenage", nombreEnChiffres);
                 tableau.push_back(piece);            
             } else if (ligne.find("vis") != string::npos) {
                 // idem
                 int position = ligne.find(" ");
                 string nombre = ligne.substr(position + 1);
                 int nombreEnChiffres = stoi(nombre);
-                Vis * piece = new Vis(nombreEnChiffres);
+                Vis * piece = new Vis("vis", nombreEnChiffres);
                 tableau.push_back(piece);
             } else if (ligne.find("essieu") != string::npos) {
-                // les liens n'ont pas de nombre de dents ou de sillons, alors c'est plus simple
-                Essieu * piece = new Essieu();
+                // pas de nombreDentOuSillon, donc plus simple
+                Essieu * piece = new Essieu("essieu");
                 tableau.push_back(piece);
             } else if (ligne.find("direct") != string::npos) {
-                Direct * piece = new Direct();
+                Direct * piece = new Direct("direct");
                 tableau.push_back(piece);
             } else if (ligne.find("chaine") != string::npos) {
-                Chaine * piece = new Chaine();
+                Chaine * piece = new Chaine("chaine");
                 tableau.push_back(piece);
             }
         }

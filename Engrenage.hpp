@@ -4,12 +4,10 @@
 using namespace std;
 
 class Engrenage : public Composante {
-    // attribut de classe
-    //int _nombreDent;
 
 public:
     // constructeur
-    Engrenage (int nombreDent);
+    Engrenage (string nomPiece, int nombreDent);
     // getter
     int getNombreDent();
 };

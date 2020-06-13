@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Engrenage::Engrenage (int nombreDent) {
+Engrenage::Engrenage (string nomPiece, int nombreDent) {
     
     if (nombreDent >= 6) {
         nombreDentOuSillon = nombreDent;
@@ -10,6 +10,7 @@ Engrenage::Engrenage (int nombreDent) {
         cerr << "Erreur (mettre constante ici)" << endl;
         exit(-1);
     }
+    nom = nomPiece;
 }
 
 int Engrenage::getNombreDent() {

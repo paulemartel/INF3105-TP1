@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Vis::Vis (int nombreSillon) {
+Vis::Vis (string nomPiece, int nombreSillon) {
     
     if (nombreSillon > 0 && nombreSillon < 5) {
         nombreDentOuSillon = nombreSillon;
@@ -10,6 +10,7 @@ Vis::Vis (int nombreSillon) {
         cerr << "erreur (mettre constante ici)" << endl;
         exit(-1);
     }
+    nom = nomPiece;
 }
 
 int Vis::getNombreSillon() {
