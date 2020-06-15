@@ -7,6 +7,9 @@
 using namespace std;
 
 class Composante : public Objet {
+    // attribut de classe
+public:
+    string type = "composante";
 // va probablement contenir des fonctions de calcul pour Engrenage et Vis
 };
 
