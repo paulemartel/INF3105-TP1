@@ -7,7 +7,7 @@ class Engrenage : public Composante {
 
 public:
     // constructeur
-    Engrenage (string nomPiece, int nombreDent);
+    Engrenage (string nomPiece, int nombreDent, string typeObjet);
     // getter
     int getNombreDent();
 };

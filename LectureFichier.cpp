@@ -26,24 +26,30 @@ int main(int argc, char * argv []) {
                 string nombre = ligne.substr(position + 1); 
                 int nombreEnChiffres = stoi(nombre);
                 Engrenage * piece = 
-                    new Engrenage("engrenage", nombreEnChiffres);
-                vecteur.push_back(piece);            
+                    new Engrenage("engrenage", nombreEnChiffres, "composante");
+                //cout << piece->typePiece << " avant" << endl;
+                vecteur.push_back(piece);
+                //cout << vecteur[0]->typePiece << " apres" << endl;            
+            
             } else if (ligne.find("vis") != string::npos) {
                 // idem
                 int position = ligne.find(" ");
                 string nombre = ligne.substr(position + 1);
                 int nombreEnChiffres = stoi(nombre);
-                Vis * piece = new Vis("vis", nombreEnChiffres);
+                Vis * piece = new Vis("vis", nombreEnChiffres, "composante");
                 vecteur.push_back(piece);
+            
             } else if (ligne.find("essieu") != string::npos) {
                 // pas de nombreDentOuSillon, donc plus simple
-                Essieu * piece = new Essieu("essieu");
+                Essieu * piece = new Essieu("essieu", "lien");
                 vecteur.push_back(piece);
+            
             } else if (ligne.find("direct") != string::npos) {
-                Direct * piece = new Direct("direct");
+                Direct * piece = new Direct("direct", "lien");
                 vecteur.push_back(piece);
+            
             } else if (ligne.find("chaine") != string::npos) {
-                Chaine * piece = new Chaine("chaine");
+                Chaine * piece = new Chaine("chaine", "lien");
                 vecteur.push_back(piece);
             }
         }
@@ -66,17 +72,32 @@ int main(int argc, char * argv []) {
             cerr << "un lien direct peut seulement etre suivi d'un engrenage" << endl;
             exit(-1);
         }
+        
+        // on calcule l'efficacite des direct avec des vis
+        if (vecteur[i]->nom == "direct" && vecteur[i - 1]->nom == "vis") {
+            // fonction attribuerEfficaciteLien(), on passe le nombreDentOuSillon de la vis en param
+            if (vecteur[i - 1]->nombreDentOuSillon == 1) {
+                vecteur[i]->efficacite = 0.8;
+            } else if (vecteur[i - 1]->nombreDentOuSillon == 2) {
+                vecteur[i]->efficacite = 0.7;
+            } else if (vecteur[i - 1]->nombreDentOuSillon == 3) {
+                vecteur[i]->efficacite = 0.6;
+            } else if (vecteur[i - 1]->nombreDentOuSillon == 4) {
+                vecteur[i]->efficacite = 0.5;
+            }
+        }
     }
+    
+    // tests
 
-    
-    
-    
-    // tests d'acces
-    //int testVis = tableau.at(0)->nombreDentOuSillon;
-    //cout << testVis << endl;
-    //int testEngrenage = tableau.at(2)->nombreDentOuSillon;
-    //cout << testEngrenage << endl;
-    // VALIDATIONS 
+    cout << vecteur[0]->nom << endl;
+    cout << vecteur[0]->nombreDentOuSillon << endl;
+    cout << vecteur[0]->typePiece << endl;
+
+    cout << vecteur[1]->nom << endl;
+    cout << vecteur[1]->efficacite << endl;
+    cout << vecteur[1]->typePiece << endl;
+
 
     return 0;    
 }

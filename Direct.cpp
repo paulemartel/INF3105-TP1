@@ -1,6 +1,7 @@
 #include "Direct.hpp"
 
-Direct::Direct(string nomPiece) {
+Direct::Direct(string nomPiece, string typeObjet) {
     nom = nomPiece;
-    // faut voir si on construit avec les composantes qui l'entourent
+    typePiece = typeObjet;
+    efficacite = 0.9; 
 }

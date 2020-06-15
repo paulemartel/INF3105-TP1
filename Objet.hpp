@@ -10,6 +10,10 @@ class Objet {
 public:
     string nom;
     int nombreDentOuSillon;
+    double efficacite;
+    string typePiece;
+    // en attendant
+    string type;
 };
 
 #endif

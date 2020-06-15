@@ -7,8 +7,8 @@ class Vis : public Composante {
       
   
 public:
-    // constructeur
-    Vis (string nom, int nombreSillon);
-    // getter
+    
+    Vis (string nom, int nombreSillon, string typeObjet);
+    
     int getNombreSillon();
 };

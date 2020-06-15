@@ -1,6 +1,7 @@
 #include "Essieu.hpp"
 
-Essieu::Essieu(string nomPiece) {
+Essieu::Essieu(string nomPiece, string typeObjet) {
     nom = nomPiece;
-    // faut voir si on construit avec les composantes qui l'entourent
+    typePiece = typeObjet;
+    
 }
