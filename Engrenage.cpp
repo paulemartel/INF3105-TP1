@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Engrenage::Engrenage (string nomPiece, int nombreDent, string typeObjet) {
+Engrenage::Engrenage (string nomPiece, int nombreDent) {
     
     if (nombreDent >= 6) {
         nombreDentOuSillon = nombreDent;
@@ -11,10 +11,6 @@ Engrenage::Engrenage (string nomPiece, int nombreDent, string typeObjet) {
         exit(-1);
     }
     nom = nomPiece;
-    typePiece = typeObjet;
-}
-
-int Engrenage::getNombreDent() {
-    return nombreDentOuSillon;
+    typePiece = "composante";
 }
 

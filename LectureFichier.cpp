@@ -26,30 +26,28 @@ int main(int argc, char * argv []) {
                 string nombre = ligne.substr(position + 1); 
                 int nombreEnChiffres = stoi(nombre);
                 Engrenage * piece = 
-                    new Engrenage("engrenage", nombreEnChiffres, "composante");
-                //cout << piece->typePiece << " avant" << endl;
-                vecteur.push_back(piece);
-                //cout << vecteur[0]->typePiece << " apres" << endl;            
+                    new Engrenage("engrenage", nombreEnChiffres);
+                vecteur.push_back(piece);         
             
             } else if (ligne.find("vis") != string::npos) {
                 // idem
                 int position = ligne.find(" ");
                 string nombre = ligne.substr(position + 1);
                 int nombreEnChiffres = stoi(nombre);
-                Vis * piece = new Vis("vis", nombreEnChiffres, "composante");
+                Vis * piece = new Vis("vis", nombreEnChiffres);
                 vecteur.push_back(piece);
             
             } else if (ligne.find("essieu") != string::npos) {
                 // pas de nombreDentOuSillon, donc plus simple
-                Essieu * piece = new Essieu("essieu", "lien");
+                Essieu * piece = new Essieu("essieu");
                 vecteur.push_back(piece);
             
             } else if (ligne.find("direct") != string::npos) {
-                Direct * piece = new Direct("direct", "lien");
+                Direct * piece = new Direct("direct");
                 vecteur.push_back(piece);
             
             } else if (ligne.find("chaine") != string::npos) {
-                Chaine * piece = new Chaine("chaine", "lien");
+                Chaine * piece = new Chaine("chaine");
                 vecteur.push_back(piece);
             }
         }
@@ -88,16 +86,20 @@ int main(int argc, char * argv []) {
         }
     }
     
+    // calcul de l'efficacite
+
+    double efficaciteTotale = 0.0;
+     
+    for (int i = 0; i < vecteur.size(); ++i) {
+        if (vecteur[i]->typePiece == "lien") {
+            efficaciteTotale = 
+                efficaciteTotale == 0 ? 
+                vecteur[i]->efficacite : 
+                efficaciteTotale * vecteur[i]->efficacite;  
+        }    
+    }
+
     // tests
-
-    cout << vecteur[0]->nom << endl;
-    cout << vecteur[0]->nombreDentOuSillon << endl;
-    cout << vecteur[0]->typePiece << endl;
-
-    cout << vecteur[1]->nom << endl;
-    cout << vecteur[1]->efficacite << endl;
-    cout << vecteur[1]->typePiece << endl;
-
 
     return 0;    
 }

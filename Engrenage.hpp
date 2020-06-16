@@ -6,8 +6,5 @@ using namespace std;
 class Engrenage : public Composante {
 
 public:
-    // constructeur
-    Engrenage (string nomPiece, int nombreDent, string typeObjet);
-    // getter
-    int getNombreDent();
+    Engrenage (string nomPiece, int nombreDent);
 };

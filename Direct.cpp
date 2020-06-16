@@ -1,7 +1,7 @@
 #include "Direct.hpp"
 
-Direct::Direct(string nomPiece, string typeObjet) {
+Direct::Direct(string nomPiece) {
     nom = nomPiece;
-    typePiece = typeObjet;
+    typePiece = "lien";
     efficacite = 0.9; 
 }

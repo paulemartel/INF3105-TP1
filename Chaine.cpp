@@ -1,7 +1,7 @@
 #include "Chaine.hpp"
 
-Chaine::Chaine(string nomPiece, string typeObjet) {
+Chaine::Chaine(string nomPiece) {
     nom = nomPiece;
-    typePiece = typeObjet;
-    // faut voir si on construit avec les composantes qui l'entourent
+    typePiece = "lien";
+    efficacite = 0.8;
 }

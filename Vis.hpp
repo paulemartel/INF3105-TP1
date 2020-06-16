@@ -5,10 +5,6 @@ using namespace std;
 
 class Vis : public Composante {
       
-  
 public:
-    
-    Vis (string nom, int nombreSillon, string typeObjet);
-    
-    int getNombreSillon();
+    Vis (string nom, int nombreSillon);
 };

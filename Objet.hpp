@@ -12,8 +12,6 @@ public:
     int nombreDentOuSillon;
     double efficacite;
     string typePiece;
-    // en attendant
-    string type;
 };
 
 #endif

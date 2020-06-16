@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Vis::Vis (string nomPiece, int nombreSillon, string typeObjet) {
+Vis::Vis (string nomPiece, int nombreSillon) {
     
     if (nombreSillon > 0 && nombreSillon < 5) {
         nombreDentOuSillon = nombreSillon;
@@ -11,10 +11,6 @@ Vis::Vis (string nomPiece, int nombreSillon, string typeObjet) {
         exit(-1);
     }
     nom = nomPiece;
-    typePiece = typeObjet;
-}
-
-int Vis::getNombreSillon() {
-    return nombreDentOuSillon;
+    typePiece = "composante";
 }
 
