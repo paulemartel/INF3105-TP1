@@ -13,6 +13,7 @@ int main(int argc, const char** args){
     double vitesseComposante = 0;
     double couple = 0;
     std::string reponse("");
+    std::cout << "HELLLLOOOOOO" << std::endl;
 
 
     while(!finProg){

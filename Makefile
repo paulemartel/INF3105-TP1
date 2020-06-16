@@ -1,22 +1,50 @@
 # Makefile pour Devoir 1
+NOM=main
+FLAGS=
+CC= g++
+OBJ=Chaine.o\
+	Direct.o\
+	Composante.o\
+	Engrenage.o\
+	Essieu.o\
+	LectureFichier.o\
+	Lien.o\
+	Objet.o\
+	Vis.o\
+	#main.o\
+	$(NOM).o
 
-#Option -g pour avoir les infos de débogage
-#OPTIONS = -g -O0 -Wall
+.cpp.o :
+	$(CC) $(FLAGS) -c $<
 
-#Option -O3 pour le code optimisé
-OPTIONS = -O3 -Wall
+$(NOM) : $(OBJ)
+		$(CC) -o $(NOM) $(OBJ)
 
-#all : test_pile test_file lab4 #(je sais pas ça fait quoi)
+Chaine.cpp : Chaine.hpp
 
+Direct.cpp : Direct.hpp
 
-# Syntaxe : cible : dépendance1 dépendance2 ...
-# Ensuite, la ou les ligne(s) débutant par une tabulation (\t) donne les commandes pour construire une cible.
+Engrenage.cpp : Engrenage.hpp
 
-devoir1: main.cpp Constantes.hpp
-	g++ $(OPTIONS) -o devoir1 main.cpp
+Composante.cpp : Composante.hpp
+
+Essieu.cpp : Essieu.hpp
+
+LectureFichier.cpp : LectureFichier.hpp Engrenage.cpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
+
+Lien.cpp : Lien.hpp
+
+Objet.cpp : Objet.hpp
+
+Vis.cpp : Vis.hpp
+
+main.cpp : main.hpp Constantes.hpp
+
+$(NOM) : main.hpp Constantes.hpp
+
 
 
 clean :
 	rm -f *.o
-	rm -f devoir1
+	rm -f $(NOM)
 
