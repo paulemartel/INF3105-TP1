@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char * argv []) {
     // fonction convertirFichierEnVecteur()
     string ligne;
-    ifstream fichier ("tests/testi6.txt");
+    ifstream fichier ("tests/testi12.txt");
     vector<Objet*> vecteur;
     
     if (fichier.is_open()) {
@@ -64,10 +64,10 @@ int main(int argc, char * argv []) {
             } else if (ligne.find("chaine") != string::npos) {
                 Chaine * piece = new Chaine("chaine");
                 vecteur.push_back(piece);
-            } else {
-                cerr << "Fichier invalide" << endl;
-                exit(-1); 
-            }
+            } else if (ligne != "") {
+                cerr << "nom de piece invalide" << endl;
+                exit(-1);
+            } 
         }
         fichier.close();
     } else {
@@ -99,7 +99,7 @@ int main(int argc, char * argv []) {
         }
         // fonction valider 4 et 5
         if ((vecteur[i]->nom == "direct" || vecteur[i]->nom == "chaine") && vecteur[i + 1]->nom != "engrenage") {
-            cerr << "un lien direct peut seulement etre suivi d'un engrenage" << endl;
+            cerr << "un lien direct ou une chaine peut seulement etre suivi d'un engrenage" << endl;
             exit(-1);
         }
         
