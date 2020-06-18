@@ -13,61 +13,93 @@ using namespace std;
 
 int main(int argc, char * argv []) {
     // fonction convertirFichierEnVecteur()
-    string ligne;
-    ifstream fichier ("tests/testi12.txt");
+    
+    ifstream fichier ("tests/testv11.txt");
     vector<Objet*> vecteur;
     
     if (fichier.is_open()) {
+        
         // le fichier est-il vide?
         if (fichier.peek() == EOF) {
             cerr << "Fichier vide" << endl;
             exit(-1);
         }
 
-        while (getline (fichier, ligne)) {
+        // on part la lecture en continue
+        char c;
+        bool debutMot;
+        bool debutNbr;
+        bool finMot;
+        bool finNbr;
+        string motComplet = "";
+        string nbrComplet = "";
+
+        while (fichier.get(c)) {
             
-            if (ligne.find("engrenage") != string::npos) {
-                int position = ligne.find(" ");
-                string nombre = ligne.substr(position + 1); 
-                for (char c : nombre) {
-                    if (!isdigit(c) && c != '-') {
-                        cerr << "Fichier invalide, caracteres invalides" << endl;
-                        exit(-1);
+            // on trouve un mot            
+            if (c != ' ' && c != '\n') {
+                debutMot = true; // on indique le debut d'un mo
+                motComplet += c; // on construit le mot
+            } else if (debutMot == true && (c == ' ' || c == '\n')) {
+                finMot = true;
+                debutMot = false;
+            }
+
+            // si le mot est complet, on l'analyse
+            while (finMot == true) { 
+
+                if (motComplet == "engrenage") {
+                    while (finNbr == false && fichier.get(c)) {
+                        if (isdigit(c) || c == '-') {
+                            debutNbr = true;
+                            nbrComplet += c;
+                        } else if (c == ' ' && debutNbr == true) {
+                            finNbr = true;
+                        } else if (c != ' ' && c != '\n') {      
+                            cerr << "Fichier invalide,"
+                            + " caracteres invalides" << endl;
+                            exit(-1);
+                        }
                     }
-                }
-                int nombreEnChiffres = stoi(nombre);
-                Engrenage * piece = 
-                    new Engrenage("engrenage", nombreEnChiffres);
-                vecteur.push_back(piece);         
+                    int nombreEnChiffres = stoi(nbrComplet);
+                    Engrenage * piece = 
+                        new Engrenage("engrenage", nombreEnChiffres);
+                    vecteur.push_back(piece);         
             
-            } else if (ligne.find("vis") != string::npos) {
-                int position = ligne.find(" ");
-                string nombre = ligne.substr(position + 1);
-                for (char c : nombre) {
-                    if (!isdigit(c) && c != '-') {
-                        cerr << "Fichier invalide, caracteres invalides" << endl;
-                        exit(-1);
+                } else if (motComplet == "vis") {
+                    while (finNbr == false && fichier.get(c)) {
+                        if (isdigit(c) || c == '-') {
+                            debutNbr = true;
+                            nbrComplet += c;
+                        } else if (c == ' ' && debutNbr == true) {
+                            finNbr = true;
+                        } else if (c != ' ' && c != '\n') {
+                            cerr << "Fichier invalide,"
+                            + " caracteres invalides" << endl;
+                            exit(-1);
+                        }
                     }
-                }
-                int nombreEnChiffres = stoi(nombre);
-                Vis * piece = new Vis("vis", nombreEnChiffres);
-                vecteur.push_back(piece);
+                    int nombreEnChiffres = stoi(nbrComplet);
+                    Vis * piece = new Vis("vis", nombreEnChiffres);
+                    vecteur.push_back(piece);
             
-            } else if (ligne.find("essieu") != string::npos) {
-                Essieu * piece = new Essieu("essieu");
-                vecteur.push_back(piece);
+                } else if (motComplet == "essieu") {
+                    Essieu * piece = new Essieu("essieu");
+                    vecteur.push_back(piece);
             
-            } else if (ligne.find("direct") != string::npos) {
-                Direct * piece = new Direct("direct");
-                vecteur.push_back(piece);
+                } else if (motComplet == "direct") {
+                    Direct * piece = new Direct("direct");
+                    vecteur.push_back(piece);
             
-            } else if (ligne.find("chaine") != string::npos) {
-                Chaine * piece = new Chaine("chaine");
-                vecteur.push_back(piece);
-            } else if (ligne != "") {
-                cerr << "nom de piece invalide" << endl;
-                exit(-1);
-            } 
+                } else if (motComplet == "chaine") {
+                    Chaine * piece = new Chaine("chaine");
+                    vecteur.push_back(piece);
+
+                } else {
+                    cerr << "nom de piece invalide" << endl;
+                    exit(-1);
+                } 
+            }
         }
         fichier.close();
     } else {
@@ -78,7 +110,8 @@ int main(int argc, char * argv []) {
         
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
-        cerr << "Fichier invalide, fini pas par une composante" << endl;
+        cerr << "Fichier invalide," + 
+            " fini pas par une composante" << endl;
         exit(-1);
     }
 
