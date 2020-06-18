@@ -7,7 +7,7 @@ Engrenage::Engrenage (string nomPiece, int nombreDent) {
     if (nombreDent >= 6) {
         nombreDentOuSillon = nombreDent;
     } else {
-        cerr << "Erreur (mettre constante ici)" << endl;
+        cerr << "Erreur, nombre de dents invalide" << endl;
         exit(-1);
     }
     nom = nomPiece;
