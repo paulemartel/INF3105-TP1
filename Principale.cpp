@@ -17,7 +17,7 @@ int main(int argc, const char * argv []){
 
     while(!finProg){
         // integrer le fichier a lire
-        LectureFichier* fichier = new LectureFichier("tests/testv5.txt");
+        LectureFichier* fichier = new LectureFichier(argv[1]);
         // valider le fichier et creer le vecteur du mecanisme 
         vector<Objet*> vecteur = fichier->convertirFichierEnVecteur();
         
