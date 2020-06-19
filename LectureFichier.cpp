@@ -11,10 +11,26 @@
 
 using namespace std;
 
-int main(int argc, char * argv []) {
-    // fonction convertirFichierEnVecteur()
+class LectureFichier {
+
     
-    ifstream fichier ("tests/testv11.txt");
+
+public:
+    vector<Objet*> convertirFichierEnVecteur();
+    void LectureFichier::validerDonnees(vector<Objet*> vecteur);
+    double calculerEfficaciteTotale(vector<Objet*> vecteur);     
+};
+// ----- APPELS DANS LA MAIN --------
+//
+// vector<Objet*> vecteur = convertirFichierEnVecteur();
+// validerDonnees(vecteur);
+// double efficaciteTotale = calculerEfficacite(vecteur);
+//
+//------------------ CPP -------------------------
+
+
+LectureFichier::vector<Objet*> convertirFichierEnVecteur() {
+    ifstream fichier ("tests/testv12.txt");
     vector<Objet*> vecteur;
     
     if (fichier.is_open()) {
@@ -48,7 +64,7 @@ int main(int argc, char * argv []) {
             // si le mot est complet, on l'analyse
             if (finMot == true) {
             finMot = false; // on remet ca a False pour le prochain mot 
-            cout << motComplet << endl; // FLUSHER
+            //cout << motComplet << endl; // FLUSHER
                 
                 if (motComplet == "engrenage") {
                     while (finNbr == false && fichier.get(c)) {
@@ -63,7 +79,7 @@ int main(int argc, char * argv []) {
                             exit(-1);
                         }
                     }
-                    cout << nbrComplet << " (engrenage)" << endl; // FLUSHER
+                    //cout << nbrComplet << " (engrenage)" << endl; // FLUSHER
                     int nombreDents = stoi(nbrComplet);
                     Engrenage * piece = 
                         new Engrenage("engrenage", nombreDents);
@@ -85,7 +101,7 @@ int main(int argc, char * argv []) {
                             exit(-1);
                         }
                     }
-                    cout << nbrComplet << " (vis)" << endl; // FLUSHER
+                    //cout << nbrComplet << " (vis)" << endl; // FLUSHER
                     int nombreSillons = stoi(nbrComplet);
                     Vis * piece = new Vis("vis", nombreSillons);
                     vecteur.push_back(piece);
@@ -116,8 +132,9 @@ int main(int argc, char * argv []) {
         cerr << "Impossible d'ouvrir le fichier" << endl;
         exit(-1);
     }
-     
+} // Fin convertirFichierEnVecteur() 
         
+void LectureFichier::validerDonnees(vector<Objet*> vecteur) {
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
         cerr << "Fichier invalide, fini pas par une composante" << endl;
@@ -159,8 +176,9 @@ int main(int argc, char * argv []) {
             }
         }
     }
-    
-    // calculerEfficacite()
+} // fin validerDonnees()
+
+double LectureFichier::calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
     double efficaciteTotale = 0.0;
      
@@ -172,20 +190,18 @@ int main(int argc, char * argv []) {
                 efficaciteTotale * vecteur[i]->efficacite;  
         }    
     }
-
+    return efficaciteTotale;
+}
     // tests
 
-    for (int i = 0; i < vecteur.size(); ++i) {
-        Objet* element = vecteur[i];
-        cout << "nom : " << element->nom << endl;
-        if (element->typePiece == "composante") {
-            cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
-        } else {
-            cout << "efficacite : " << element->efficacite << endl;
-        }
-        cout << "\n" << endl;
-    }
-
-
-    return 0;    
+    //for (int i = 0; i < vecteur.size(); ++i) {
+    //    Objet* element = vecteur[i];
+    //    cout << "nom : " << element->nom << endl;
+    //    if (element->typePiece == "composante") {
+    //        cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
+    //    } else {
+    //        cout << "efficacite : " << element->efficacite << endl;
+    //    }
+    //    cout << "\n" << endl;
+    //}    
 }
