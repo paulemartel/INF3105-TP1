@@ -1,15 +1,4 @@
-#include <iostream>
-#include <string>
-#include "Constantes.hpp"
-#include <vector>
-
-#include "Engrenage.hpp"
-#include "Vis.hpp" 
-#include "Essieu.hpp"
-#include "Direct.hpp"
-#include "Chaine.hpp"
-
-using namespace std;
+#include "Principale.hpp"
 
 //declaration de fonctions
 double demandeDouble();

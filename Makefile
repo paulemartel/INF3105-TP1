@@ -1,5 +1,5 @@
 # Makefile pour Devoir 1
-NOM=main
+NOM=Principale
 FLAGS=
 CC= g++
 OBJ=Chaine.o\
@@ -11,7 +11,6 @@ OBJ=Chaine.o\
 	Lien.o\
 	Objet.o\
 	Vis.o\
-	#main.o\
 	$(NOM).o
 
 .cpp.o :
@@ -30,7 +29,7 @@ Composante.cpp : Composante.hpp
 
 Essieu.cpp : Essieu.hpp
 
-LectureFichier.cpp : LectureFichier.hpp Engrenage.cpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
+LectureFichier.cpp : LectureFichier.hpp
 
 Lien.cpp : Lien.hpp
 
@@ -38,9 +37,7 @@ Objet.cpp : Objet.hpp
 
 Vis.cpp : Vis.hpp
 
-main.cpp : main.hpp Constantes.hpp Engrenage.hpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
-
-$(NOM) : main.hpp Constantes.hpp Engrenage.hpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
+$(NOM).cpp : Principale.hpp Constantes.hpp Engrenage.hpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
 
 
 
