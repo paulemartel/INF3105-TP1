@@ -13,11 +13,13 @@ using namespace std;
 
 class LectureFichier {
 
-    
+    void validerComposanteFin(vector<Objet*> vecteur);
+    void validerReglesFormationMecanisme(vector<Objet*> vecteur);
+    void calculerEfficaciteDirectAvecVis(vector<Objet*> vecteur);
 
 public:
     vector<Objet*> convertirFichierEnVecteur();
-    void LectureFichier::validerDonnees(vector<Objet*> vecteur);
+    void validerDonnees(vector<Objet*> vecteur);
     double calculerEfficaciteTotale(vector<Objet*> vecteur);     
 };
 // ----- APPELS DANS LA MAIN --------
@@ -29,7 +31,7 @@ public:
 //------------------ CPP -------------------------
 
 
-LectureFichier::vector<Objet*> convertirFichierEnVecteur() {
+vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
     ifstream fichier ("tests/testv12.txt");
     vector<Objet*> vecteur;
     
@@ -54,7 +56,7 @@ LectureFichier::vector<Objet*> convertirFichierEnVecteur() {
             
             // on trouve un mot            
             if (c != ' ' && c != '\n') {
-                debutMot = true; // on indique le debut d'un mo
+                debutMot = true; // on indique le debut d'un mot
                 motComplet += c; // on construit le mot
             } else if (debutMot == true && (c == ' ' || c == '\n')) {
                 finMot = true;
@@ -83,10 +85,7 @@ LectureFichier::vector<Objet*> convertirFichierEnVecteur() {
                     int nombreDents = stoi(nbrComplet);
                     Engrenage * piece = 
                         new Engrenage("engrenage", nombreDents);
-                    vecteur.push_back(piece);
-                    finNbr = false;
-                    motComplet = "";
-                    nbrComplet = "";         
+                    vecteur.push_back(piece);  
             
                 } else if (motComplet == "vis") {
                     while (finNbr == false && fichier.get(c)) {
@@ -105,26 +104,24 @@ LectureFichier::vector<Objet*> convertirFichierEnVecteur() {
                     int nombreSillons = stoi(nbrComplet);
                     Vis * piece = new Vis("vis", nombreSillons);
                     vecteur.push_back(piece);
-                    finNbr = false;
-                    motComplet = "";
-                    nbrComplet = "";
 
                 } else if (motComplet == "essieu") {
                     Essieu * piece = new Essieu("essieu");
                     vecteur.push_back(piece);
-                    motComplet = "";
                 } else if (motComplet == "direct") {
                     Direct * piece = new Direct("direct");
                     vecteur.push_back(piece);
-                    motComplet = "";
                 } else if (motComplet == "chaine") {
                     Chaine * piece = new Chaine("chaine");
                     vecteur.push_back(piece);
-                    motComplet = "";
                 } else {
                     cerr << "nom de piece invalide" << endl;
                     exit(-1);
                 } 
+                // on remet tout a zero pour le prochain mot
+                motComplet = "";
+                nbrComplet = "";
+                finNbr = false;
             }
         }
         fichier.close();
@@ -135,13 +132,19 @@ LectureFichier::vector<Objet*> convertirFichierEnVecteur() {
 } // Fin convertirFichierEnVecteur() 
         
 void LectureFichier::validerDonnees(vector<Objet*> vecteur) {
+    validerComposanteFin(vecteur);
+    validerReglesFormationMecanisme(vecteur);
+} 
+
+void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {   
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
         cerr << "Fichier invalide, fini pas par une composante" << endl;
         exit(-1);
     }
+}
 
-    // fonction valider345()
+void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
     for (int i = 0; i < vecteur.size(); ++i) {
         //est-ce qu'on alterne composante et lien?
         //les composantes seront toujours placees a des indices pairs
@@ -162,6 +165,10 @@ void LectureFichier::validerDonnees(vector<Objet*> vecteur) {
             exit(-1);
         }
         
+        calculerEfficaciteDirectAvecVis(vecteur);
+}
+
+void LectureFichier::calculerEfficaciteDirectAvecVis(vector<Objet*> vecteur) {
         // on calcule l'efficacite des direct avec des vis
         if (vecteur[i]->nom == "direct" && vecteur[i - 1]->nom == "vis") {
             // Direct::calculerEfficaciteDirect(int dentsOuSillons)
@@ -176,7 +183,7 @@ void LectureFichier::validerDonnees(vector<Objet*> vecteur) {
             }
         }
     }
-} // fin validerDonnees()
+}
 
 double LectureFichier::calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
