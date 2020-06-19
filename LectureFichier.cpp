@@ -46,55 +46,65 @@ int main(int argc, char * argv []) {
             }
 
             // si le mot est complet, on l'analyse
-            while (finMot == true) { 
-
+            if (finMot == true) {
+            finMot = false; // on remet ca a False pour le prochain mot 
+            cout << motComplet << endl; // FLUSHER
+                
                 if (motComplet == "engrenage") {
                     while (finNbr == false && fichier.get(c)) {
                         if (isdigit(c) || c == '-') {
                             debutNbr = true;
                             nbrComplet += c;
-                        } else if (c == ' ' && debutNbr == true) {
+                        } else if ((c == ' ' || c == '\n') && debutNbr == true) {
                             finNbr = true;
+                            debutNbr = false;
                         } else if (c != ' ' && c != '\n') {      
-                            cerr << "Fichier invalide,"
-                            + " caracteres invalides" << endl;
+                            cerr << "Fichier invalide, caracteres invalides" << endl;
                             exit(-1);
                         }
                     }
-                    int nombreEnChiffres = stoi(nbrComplet);
+                    cout << nbrComplet << " (engrenage)" << endl; // FLUSHER
+                    int nombreDents = stoi(nbrComplet);
                     Engrenage * piece = 
-                        new Engrenage("engrenage", nombreEnChiffres);
-                    vecteur.push_back(piece);         
+                        new Engrenage("engrenage", nombreDents);
+                    vecteur.push_back(piece);
+                    finNbr = false;
+                    motComplet = "";
+                    nbrComplet = "";         
             
                 } else if (motComplet == "vis") {
                     while (finNbr == false && fichier.get(c)) {
                         if (isdigit(c) || c == '-') {
                             debutNbr = true;
                             nbrComplet += c;
-                        } else if (c == ' ' && debutNbr == true) {
+                        } else if ((c == ' ' || c == '\n') && debutNbr == true) {
                             finNbr = true;
+                            debutNbr = false;
                         } else if (c != ' ' && c != '\n') {
-                            cerr << "Fichier invalide,"
-                            + " caracteres invalides" << endl;
+                            cerr << "Fichier invalide, caracteres invalides" << endl;
                             exit(-1);
                         }
                     }
-                    int nombreEnChiffres = stoi(nbrComplet);
-                    Vis * piece = new Vis("vis", nombreEnChiffres);
+                    cout << nbrComplet << " (vis)" << endl; // FLUSHER
+                    int nombreSillons = stoi(nbrComplet);
+                    Vis * piece = new Vis("vis", nombreSillons);
                     vecteur.push_back(piece);
-            
+                    finNbr = false;
+                    motComplet = "";
+                    nbrComplet = "";
+
                 } else if (motComplet == "essieu") {
                     Essieu * piece = new Essieu("essieu");
                     vecteur.push_back(piece);
-            
+                    motComplet = "";
                 } else if (motComplet == "direct") {
                     Direct * piece = new Direct("direct");
                     vecteur.push_back(piece);
-            
+                    motComplet = "";
                 } else if (motComplet == "chaine") {
                     Chaine * piece = new Chaine("chaine");
                     vecteur.push_back(piece);
-
+                    motComplet = "";
                 } else {
                     cerr << "nom de piece invalide" << endl;
                     exit(-1);
@@ -110,8 +120,7 @@ int main(int argc, char * argv []) {
         
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
-        cerr << "Fichier invalide," + 
-            " fini pas par une composante" << endl;
+        cerr << "Fichier invalide, fini pas par une composante" << endl;
         exit(-1);
     }
 
