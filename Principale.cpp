@@ -5,7 +5,7 @@ double demandeDouble();
 bool memeSigne(double num1,double num2);
 void analyseMouvement(double vitesseComposante, double couple, vector<Objet*> vecteur);
 double calculR(Objet* composante1, Objet* lien, Objet* composante2);
-
+double calculerEfficaciteTotale(vector<Objet*> vecteur);
 
 int main(int argc, const char * argv []){
     bool finProg = false;
@@ -15,15 +15,12 @@ int main(int argc, const char * argv []){
     std::string reponse("");
 
 
-    //while(!finProg){
-        //lire et valider le fichier
-        LectureFichier* fichier = new LectureFichier("tests/testi9.txt");
-        //cout <<"niet" << endl;
+    while(!finProg){
+        // integrer le fichier a lire
+        LectureFichier* fichier = new LectureFichier("tests/testv5.txt");
+        // valider le fichier et creer le vecteur du mecanisme 
         vector<Objet*> vecteur = fichier->convertirFichierEnVecteur();
         
-        //double efficaciteTotale = calculerEfficacite(vecteur);
-
-/* JE MET TOUT EN COMMENTAIRE POUR FAIRE DES TESTS
         //demande de requetes a l'utilisateur
         std::cout << MSSG_REQUETE_VITESSE << std::endl;
         vitesseComposante = demandeDouble();
@@ -43,39 +40,9 @@ int main(int argc, const char * argv []){
 
         }
 
-        //création d'un vecteur temporaire pour test
-        //vector<Objet*> vecteur;
-
-        //Vis * piece1 = new Vis("vis", 2);
-        //vecteur.push_back(piece1);
-
-        //Direct * piece2 = new Direct("direct");
-        //vecteur.push_back(piece2);
-
-        //Engrenage * piece3 = new Engrenage("engrenage", 10);
-        //vecteur.push_back(piece3);
-
-        //Chaine * piece4 = new Chaine("chaine");
-        //vecteur.push_back(piece4);
-
-        //Engrenage * piece5 = new Engrenage("engrenage", 20);
-        //vecteur.push_back(piece5);
-
-        //Essieu * piece6 = new Essieu("essieu");
-        //vecteur.push_back(piece6);
-
-        //Engrenage * piece7 = new Engrenage("engrenage", 10);
-        //vecteur.push_back(piece7);
-
-        //Direct * piece8 = new Direct("direct");
-        //vecteur.push_back(piece8);
-
-        //Engrenage * piece9 = new Engrenage("engrenage", 15);
-        //vecteur.push_back(piece9);
-
         analyseMouvement(vitesseComposante,couple,vecteur);
-
-
+        // calcul de l'efficacite totale (je le mets la en attendant)
+        double efficaciteTotale = calculerEfficaciteTotale(vecteur);
 
 
         //nouvelle analyse
@@ -84,9 +51,25 @@ int main(int argc, const char * argv []){
         if(reponse.compare("n") == 0){
             finProg = true;
         }
-    */
-    //}
+    
+    }
 }
+
+double calculerEfficaciteTotale(vector<Objet*> vecteur) {
+
+    double efficaciteTotale = 0.0;
+
+    for (int i = 0; i < vecteur.size(); ++i) {
+        if (vecteur[i]->typePiece == "lien") {
+            efficaciteTotale =
+                efficaciteTotale == 0 ?
+                vecteur[i]->efficacite :
+                efficaciteTotale * vecteur[i]->efficacite;
+        }
+    }
+    return efficaciteTotale;
+}
+
 
 /**
 Fonction qui se charge de s'assurer que la valeur entree en input par l'utilisateur

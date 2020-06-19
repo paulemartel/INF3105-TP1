@@ -30,7 +30,6 @@ public:
     LectureFichier(string fichierEntre);
     vector<Objet*> convertirFichierEnVecteur();
     void validerDonnees(vector<Objet*> vecteur);
-    double calculerEfficaciteTotale(vector<Objet*> vecteur);     
 };
 // ----- APPELS DANS LA MAIN --------
 //

@@ -1,5 +1,6 @@
 #include "Objet.hpp"
-
+#include <iostream> // FLUSHER
 void Objet::calculerEfficaciteDirectAvecVis(int nombreSillon) {
-    // vide, va etre redefinie dans Direct
+    cout << "rentre dans classe mere" << endl; 
+   // vide, va etre redefinie dans Direct
 }

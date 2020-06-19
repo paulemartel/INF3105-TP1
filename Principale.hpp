@@ -16,6 +16,8 @@ class Principale {
     bool memeSigne(double num1,double num2);
     void analyseMouvement(double vitesseComposante, double couple, vector<Objet*> vecteur);
     double calculR(Objet* composante1, Objet* lien, Objet* composante2);
+    double calculerEfficaciteTotale(vector<Objet*> vecteur);
+
 };
 
 #endif

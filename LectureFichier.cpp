@@ -153,20 +153,6 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
     }
 }
 
-double LectureFichier::calculerEfficaciteTotale(vector<Objet*> vecteur) {
-
-    double efficaciteTotale = 0.0;
-     
-    for (int i = 0; i < vecteur.size(); ++i) {
-        if (vecteur[i]->typePiece == "lien") {
-            efficaciteTotale = 
-                efficaciteTotale == 0 ? 
-                vecteur[i]->efficacite : 
-                efficaciteTotale * vecteur[i]->efficacite;  
-        }    
-    }
-    return efficaciteTotale;
-}
     // tests
 
     //for (int i = 0; i < vecteur.size(); ++i) {
