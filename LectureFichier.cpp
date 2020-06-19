@@ -114,40 +114,25 @@ void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
     }
 }
 
-void LectureFichier::calculerEfficaciteDirectAvecVis(Objet* vis, Objet* direct) {
-    if (vis->nombreDentOuSillon == 1) {
-        direct->efficacite = 0.8;
-    } else if (vis->nombreDentOuSillon == 2) {
-        direct->efficacite = 0.7;
-    } else if (vis->nombreDentOuSillon == 3) {
-        direct->efficacite = 0.6;
-    } else if (vis->nombreDentOuSillon == 4) {
-        direct->efficacite = 0.5;
-    }
-}
-
 void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
     for (int i = 0; i < vecteur.size(); ++i) {
-        //est-ce qu'on alterne composante et lien?
-        //les composantes seront toujours placees a des indices pairs
+        // alterne-t-on composante et lien? indices des composantes toujours impairs
         if (i % 2 == 1 && vecteur[i]->typePiece == "composante") {
             cerr << "Fichier invalide, on alterne pas lien et composante" << endl;
             exit(-1);
         }
                 
         // TODO si meme msg erreur identique dans constantes, regrouper le corps des fonctions
-        // fonction valider 3
         if (vecteur[i]->nom == "vis" && vecteur[i + 1] != nullptr && vecteur[i + 1]->nom != "direct") {
             cerr << "le lien suivant une vis doit etre direct" << endl;
             exit(-1);
         }
-        // fonction valider 4 et 5
         if ((vecteur[i]->nom == "direct" || vecteur[i]->nom == "chaine") && vecteur[i + 1]->nom != "engrenage") {
             cerr << "un lien direct ou une chaine peut seulement etre suivi d'un engrenage" << endl;
             exit(-1);
         }
         if (vecteur[i]->nom == "direct" && vecteur[i - 1]->nom == "vis") {
-            calculerEfficaciteDirectAvecVis(vecteur[i - 1], vecteur[i]);
+            vecteur[i]->calculerEfficaciteDirectAvecVis(vecteur[i - 1]->nombreDentOuSillon);
         }
     }
 }

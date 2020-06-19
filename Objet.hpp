@@ -12,6 +12,7 @@ public:
     int nombreDentOuSillon;
     double efficacite;
     string typePiece;
+    void calculerEfficaciteDirectAvecVis(int nombreSillon);
 };
 
 #endif

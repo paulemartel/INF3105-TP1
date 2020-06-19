@@ -15,7 +15,6 @@ class LectureFichier {
 
     void validerComposanteFin(vector<Objet*> vecteur);
     void validerReglesFormationMecanisme(vector<Objet*> vecteur);
-    void calculerEfficaciteDirectAvecVis(Objet* vis, Objet* direct);    
 
 public:
     vector<Objet*> convertirFichierEnVecteur();
