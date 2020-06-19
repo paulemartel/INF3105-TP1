@@ -38,9 +38,9 @@ Objet.cpp : Objet.hpp
 
 Vis.cpp : Vis.hpp
 
-main.cpp : main.hpp Constantes.hpp
+main.cpp : main.hpp Constantes.hpp Engrenage.hpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
 
-$(NOM) : main.hpp Constantes.hpp
+$(NOM) : main.hpp Constantes.hpp Engrenage.hpp Vis.hpp Essieu.hpp Direct.hpp Chaine.hpp
 
 
 
