@@ -108,6 +108,9 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
         cerr << "Impossible d'ouvrir le fichier" << endl;
         exit(-1);
     }
+
+    validerDonnees(vecteur);
+
     return vecteur;
 } // Fin convertirFichierEnVecteur() 
         

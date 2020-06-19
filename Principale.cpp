@@ -17,26 +17,11 @@ int main(int argc, const char * argv []){
 
     //while(!finProg){
         //lire et valider le fichier
-        LectureFichier* fichier = new LectureFichier("tests/testv1.txt");
+        LectureFichier* fichier = new LectureFichier("tests/testi9.txt");
         //cout <<"niet" << endl;
         vector<Objet*> vecteur = fichier->convertirFichierEnVecteur();
-        //validerDonnees(vecteur);
+        
         //double efficaciteTotale = calculerEfficacite(vecteur);
-   
-        // tests
-
-        for (int i = 0; i < vecteur.size(); ++i) {
-            Objet* element = vecteur[i];
-            cout << "nom : " << element->nom << endl;
-            if (element->typePiece == "composante") {
-                cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
-            } else {
-                cout << "efficacite : " << element->efficacite << endl;
-            }
-            cout << "\n" << endl;
-        }    
-
-
 
 /* JE MET TOUT EN COMMENTAIRE POUR FAIRE DES TESTS
         //demande de requetes a l'utilisateur
