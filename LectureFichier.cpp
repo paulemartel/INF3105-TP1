@@ -1,35 +1,4 @@
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-
-#include "Engrenage.hpp"
-#include "Vis.hpp" 
-#include "Essieu.hpp"
-#include "Direct.hpp"
-#include "Chaine.hpp"
-
-using namespace std;
-
-class LectureFichier {
-
-    void validerComposanteFin(vector<Objet*> vecteur);
-    void validerReglesFormationMecanisme(vector<Objet*> vecteur);
-    void calculerEfficaciteDirectAvecVis(vector<Objet*> vecteur);
-
-public:
-    vector<Objet*> convertirFichierEnVecteur();
-    void validerDonnees(vector<Objet*> vecteur);
-    double calculerEfficaciteTotale(vector<Objet*> vecteur);     
-};
-// ----- APPELS DANS LA MAIN --------
-//
-// vector<Objet*> vecteur = convertirFichierEnVecteur();
-// validerDonnees(vecteur);
-// double efficaciteTotale = calculerEfficacite(vecteur);
-//
-//------------------ CPP -------------------------
-
+#include "LectureFichier.hpp"
 
 vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
     ifstream fichier ("tests/testv12.txt");
@@ -129,6 +98,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
         cerr << "Impossible d'ouvrir le fichier" << endl;
         exit(-1);
     }
+    return vecteur;
 } // Fin convertirFichierEnVecteur() 
         
 void LectureFichier::validerDonnees(vector<Objet*> vecteur) {
@@ -141,6 +111,18 @@ void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
     if (vecteur[dernierePosition]->typePiece != "composante") {
         cerr << "Fichier invalide, fini pas par une composante" << endl;
         exit(-1);
+    }
+}
+
+void LectureFichier::calculerEfficaciteDirectAvecVis(Objet* vis, Objet* direct) {
+    if (vis->nombreDentOuSillon == 1) {
+        direct->efficacite = 0.8;
+    } else if (vis->nombreDentOuSillon == 2) {
+        direct->efficacite = 0.7;
+    } else if (vis->nombreDentOuSillon == 3) {
+        direct->efficacite = 0.6;
+    } else if (vis->nombreDentOuSillon == 4) {
+        direct->efficacite = 0.5;
     }
 }
 
@@ -164,23 +146,8 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
             cerr << "un lien direct ou une chaine peut seulement etre suivi d'un engrenage" << endl;
             exit(-1);
         }
-        
-        calculerEfficaciteDirectAvecVis(vecteur);
-}
-
-void LectureFichier::calculerEfficaciteDirectAvecVis(vector<Objet*> vecteur) {
-        // on calcule l'efficacite des direct avec des vis
         if (vecteur[i]->nom == "direct" && vecteur[i - 1]->nom == "vis") {
-            // Direct::calculerEfficaciteDirect(int dentsOuSillons)
-            if (vecteur[i - 1]->nombreDentOuSillon == 1) {
-                vecteur[i]->efficacite = 0.8;
-            } else if (vecteur[i - 1]->nombreDentOuSillon == 2) {
-                vecteur[i]->efficacite = 0.7;
-            } else if (vecteur[i - 1]->nombreDentOuSillon == 3) {
-                vecteur[i]->efficacite = 0.6;
-            } else if (vecteur[i - 1]->nombreDentOuSillon == 4) {
-                vecteur[i]->efficacite = 0.5;
-            }
+            calculerEfficaciteDirectAvecVis(vecteur[i - 1], vecteur[i]);
         }
     }
 }
@@ -211,4 +178,4 @@ double LectureFichier::calculerEfficaciteTotale(vector<Objet*> vecteur) {
     //    }
     //    cout << "\n" << endl;
     //}    
-}
+
