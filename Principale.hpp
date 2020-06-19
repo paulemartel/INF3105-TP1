@@ -5,18 +5,13 @@
 #include <string>
 #include "Constantes.hpp"
 #include <vector>
+#include "LectureFichier.hpp"
 
-#include "Engrenage.hpp"
-#include "Vis.hpp" 
-#include "Essieu.hpp"
-#include "Direct.hpp"
-#include "Chaine.hpp"
 using namespace std;
 
 class Principale {
 
     //attributs
-private:
     double demandeDouble();
     bool memeSigne(double num1,double num2);
     void analyseMouvement(double vitesseComposante, double couple, vector<Objet*> vecteur);

@@ -1,3 +1,0 @@
-vis 1
-direct
-engrenage 10

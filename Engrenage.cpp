@@ -1,10 +1,11 @@
 #include "Engrenage.hpp"
+#include "Constantes.hpp"
 
 #include <iostream>
 
 Engrenage::Engrenage (string nomPiece, int nombreDent) {
     
-    if (nombreDent >= 6) {
+    if (nombreDent >= NOMBRE_DENT_MINIMUM) {
         nombreDentOuSillon = nombreDent;
     } else {
         cerr << "Erreur, nombre de dents invalide" << endl;

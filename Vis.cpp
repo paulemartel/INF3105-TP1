@@ -1,10 +1,12 @@
 #include "Vis.hpp"
+#include "Constantes.hpp"
 
 #include <iostream>
 
 Vis::Vis (string nomPiece, int nombreSillon) {
     
-    if (nombreSillon > 0 && nombreSillon < 5) {
+    if (nombreSillon >= NOMBRE_SILLON_MINIMUM 
+            && nombreSillon <= NOMBRE_SILLON_MAXIMUM) {
         nombreDentOuSillon = nombreSillon;
     } else {
         cerr << "erreur, nombre de sillons invalide" << endl;

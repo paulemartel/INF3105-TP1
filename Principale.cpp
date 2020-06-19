@@ -7,7 +7,7 @@ void analyseMouvement(double vitesseComposante, double couple, vector<Objet*> ve
 double calculR(Objet* composante1, Objet* lien, Objet* composante2);
 
 
-int main(int argc, const char** args){
+int main(int argc, const char * argv []){
     bool finProg = false;
     bool coupleValide = true;
     double vitesseComposante = 0;
@@ -15,10 +15,30 @@ int main(int argc, const char** args){
     std::string reponse("");
 
 
-    while(!finProg){
+    //while(!finProg){
         //lire et valider le fichier
+        LectureFichier* fichier = new LectureFichier("tests/testv1.txt");
+        //cout <<"niet" << endl;
+        vector<Objet*> vecteur = fichier->convertirFichierEnVecteur();
+        //validerDonnees(vecteur);
+        //double efficaciteTotale = calculerEfficacite(vecteur);
+   
+        // tests
+
+        for (int i = 0; i < vecteur.size(); ++i) {
+            Objet* element = vecteur[i];
+            cout << "nom : " << element->nom << endl;
+            if (element->typePiece == "composante") {
+                cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
+            } else {
+                cout << "efficacite : " << element->efficacite << endl;
+            }
+            cout << "\n" << endl;
+        }    
 
 
+
+/* JE MET TOUT EN COMMENTAIRE POUR FAIRE DES TESTS
         //demande de requetes a l'utilisateur
         std::cout << MSSG_REQUETE_VITESSE << std::endl;
         vitesseComposante = demandeDouble();
@@ -31,7 +51,7 @@ int main(int argc, const char** args){
         //verification si les deux valeurs sont du meme signe
         while(!coupleValide){
 
-            std:cout << MSSG_ERR_MEME_SIGNE << std::endl;
+            cout << MSSG_ERR_MEME_SIGNE << std::endl;
             std::cout << MSSG_REQUETE_COUPLE << std::endl;
             couple = demandeDouble();
             coupleValide = memeSigne(vitesseComposante,couple);
@@ -39,44 +59,36 @@ int main(int argc, const char** args){
         }
 
         //création d'un vecteur temporaire pour test
-        vector<Objet*> vecteur;
+        //vector<Objet*> vecteur;
 
-        Vis * piece1 = new Vis("vis", 2);
-        vecteur.push_back(piece1);
+        //Vis * piece1 = new Vis("vis", 2);
+        //vecteur.push_back(piece1);
 
-        Direct * piece2 = new Direct("direct");
-        vecteur.push_back(piece2);
+        //Direct * piece2 = new Direct("direct");
+        //vecteur.push_back(piece2);
 
-        Engrenage * piece3 = new Engrenage("engrenage", 10);
-        vecteur.push_back(piece3);
+        //Engrenage * piece3 = new Engrenage("engrenage", 10);
+        //vecteur.push_back(piece3);
 
-        Chaine * piece4 = new Chaine("chaine");
-        vecteur.push_back(piece4);
+        //Chaine * piece4 = new Chaine("chaine");
+        //vecteur.push_back(piece4);
 
-        Engrenage * piece5 = new Engrenage("engrenage", 20);
-        vecteur.push_back(piece5);
+        //Engrenage * piece5 = new Engrenage("engrenage", 20);
+        //vecteur.push_back(piece5);
 
-        Essieu * piece6 = new Essieu("essieu");
-        vecteur.push_back(piece6);
+        //Essieu * piece6 = new Essieu("essieu");
+        //vecteur.push_back(piece6);
 
-        Engrenage * piece7 = new Engrenage("engrenage", 10);
-        vecteur.push_back(piece7);
+        //Engrenage * piece7 = new Engrenage("engrenage", 10);
+        //vecteur.push_back(piece7);
 
-        Direct * piece8 = new Direct("direct");
-        vecteur.push_back(piece8);
+        //Direct * piece8 = new Direct("direct");
+        //vecteur.push_back(piece8);
 
-        Engrenage * piece9 = new Engrenage("engrenage", 15);
-        vecteur.push_back(piece9);
+        //Engrenage * piece9 = new Engrenage("engrenage", 15);
+        //vecteur.push_back(piece9);
 
         analyseMouvement(vitesseComposante,couple,vecteur);
-
-
-
-
-
-
-
-
 
 
 
@@ -87,7 +99,8 @@ int main(int argc, const char** args){
         if(reponse.compare("n") == 0){
             finProg = true;
         }
-    }
+    */
+    //}
 }
 
 /**
@@ -130,9 +143,6 @@ void analyseMouvement(double vitesseComposante, double couple
 
     //affichage V0 et C0
     int nombre = 0;
-
-
-
 
 
     for(int i = 0; i<vecteur.size(); i=i+2 ){
@@ -200,11 +210,6 @@ double calculR(Objet* composante1, Objet* lien, Objet* composante2){
 
     return constanteR;
 }
-
-
-
-
-
 
 
 
