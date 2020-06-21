@@ -94,7 +94,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                     vecteur.push_back(piece);
                 } else {
                     //cout << motComplet << endl; // FLUSHER
-                    if (vecteur != nullptr
+                    if (!vecteur.empty()
                             && vecteur[vecteur.size() - 1]->typePiece
                             == "composante") { 
                         cerr << MSSG_ERR_LIEN_INVALIDE << endl;
