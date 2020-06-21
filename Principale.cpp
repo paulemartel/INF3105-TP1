@@ -1,4 +1,11 @@
-#include "Principale.hpp"
+#include <iostream>
+#include <string>
+#include "Constantes.hpp"
+#include <vector>
+#include "LectureFichier.hpp"
+
+using namespace std;
+
 
 //declaration de fonctions
 double demandeDouble();
@@ -80,8 +87,7 @@ retourne un double
 double demandeDouble(){
     double nombre;
     while(!(std::cin >> nombre)){
-        std::cout << "Pas un double Veuillez entrer"
-        << "une nouvelle valeur" << std::endl;
+        std::cout << MSSG_ERR_REQUETE_PAS_DOUBLE << std::endl;
         cin.clear();
         cin.ignore(100000, '\n');
     }
@@ -108,18 +114,17 @@ void analyseMouvement(double vitesseComposante, double couple
     double coupleProchain  =0;
 
     double constanteR = 0;
+    double efficaciteTot = calculerEfficaciteTotale(vecteur);
 
-    //affichage V0 et C0
     int nombre = 0;
 
 
     for(int i = 0; i<vecteur.size(); i=i+2 ){
-        //affichage
-        //TODO : Il reste juste a trouver l'efficacite totale
-        //Et multiplier cette valeur ici
-        std::cout << "V"<< nombre <<"=" 
-        << vitesseInitiale <<" C" 
-        << nombre << "=" << coupleIninitial << std::endl;
+
+        //affichage des resultats
+        cout << "V"<< nombre <<"=" 
+        << vitesseInitiale * efficaciteTot <<" C" 
+        << nombre << "=" << coupleIninitial * efficaciteTot << endl;
 
         ++nombre;
 
@@ -130,8 +135,6 @@ void analyseMouvement(double vitesseComposante, double couple
         Objet* composante2 = vecteur[i+2];
 
         constanteR = calculR(composante1,lien,composante2);
-
-        std::cout << "VALEUR DE R : " << constanteR << std::endl;
 
         //trouver vitesseProchain
         vitesseProchain = vitesseInitiale/constanteR;

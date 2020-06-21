@@ -26,6 +26,8 @@ string const MSSG_REQUETE_COUPLE = "Quel est le couple appliqué à la première co
 
 /* Message d'erreur */
 
+string const MSSG_ERR_REQUETE_PAS_DOUBLE = "Pas un double Veuillez entrer une nouvelle valeur.";
+
 string const MSSG_ERR_COMPOSANTE_APRES_ESSIEU = "Il faut une composante apres un essieu.";
 string const MSSG_ERR_COMPOSANTE_APRES_DIRECT = "Il faut une composante apres un lien direct.";
 string const MSSG_ERR_COMPOSANTE_APRES_CHAINE = "Il faut une composante apres une chaine.";
