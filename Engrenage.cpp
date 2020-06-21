@@ -5,10 +5,14 @@
 
 Engrenage::Engrenage (string nomPiece, int nombreDent) {
     
+    if (nombreDent % 1 != 0) {
+        cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT << endl;
+        exit(-1);
+    }
     if (nombreDent >= NOMBRE_DENT_MINIMUM) {
         nombreDentOuSillon = nombreDent;
     } else {
-        cerr << "Erreur, nombre de dents invalide" << endl;
+        cerr << MSSG_ERR_NOMBRE_DENT_MINIMUM << endl;
         exit(-1);
     }
     nom = nomPiece;

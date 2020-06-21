@@ -55,7 +55,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                             finNbr = true;
                             debutNbr = false;
                         } else if (c != ' ' && c != '\n') {      
-                            cerr << "Fichier invalide, caracteres invalides" 
+                            cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT 
                                 << endl;
                             exit(-1);
                         }
@@ -74,7 +74,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                             finNbr = true;
                             debutNbr = false;
                         } else if (c != ' ' && c != '\n') {
-                            cerr << "Fichier invalide, caracteres invalides" 
+                            cerr << MSSG_ERR_DEVRAIT_SILLON 
                                << endl;
                             exit(-1);
                         }
@@ -94,7 +94,13 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                     vecteur.push_back(piece);
                 } else {
                     //cout << motComplet << endl; // FLUSHER
-                    cerr << "nom de piece invalide" << endl;
+                    if (vecteur != nullptr
+                            && vecteur[vecteur.size() - 1]->typePiece
+                            == "composante") { 
+                        cerr << MSSG_ERR_LIEN_INVALIDE << endl;
+                    } else {
+                        cerr << MSSG_ERR_COMPOSANTE_INVALIDE << endl;
+                    }    
                     exit(-1);
                 } 
                 // on remet tout a zero pour le prochain mot
@@ -105,7 +111,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
         }
         fichier.close();
     } else {
-        cerr << "Impossible d'ouvrir le fichier" << endl;
+        cerr << MSSG_ERR_FICHIER_INEXISTANT << endl;
         exit(-1);
     }
 
@@ -122,7 +128,14 @@ void LectureFichier::validerDonnees(vector<Objet*> vecteur) {
 void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {   
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
-        cerr << "Fichier invalide, fini pas par une composante" << endl;
+        string nomLien = vecteur[vecteur.size() - 2]->nom;
+        if (nomLien == "essieu") {  
+            cerr << MSSG_ERR_COMPOSANTE_APRES_ESSIEU << endl;
+        } else if (nomLien == "direct") {
+            cerr << MSSG_ERR_COMPOSANTE_APRES_DIRECT << endl;
+        } else {
+            cerr << MSSG_ERR_COMPOSANTE_APRES_CHAINE << endl;
+        }
         exit(-1);
     }
 }
@@ -131,8 +144,7 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
     for (int i = 0; i < vecteur.size(); ++i) {
         // alterne-t-on composante et lien? indices des composantes toujours impairs
         if (i % 2 == 1 && vecteur[i]->typePiece == "composante") {
-            cerr << "Fichier invalide, on alterne pas lien et composante" 
-                << endl;
+            cerr << MSSG_ERR_ALTERNANCE_COMPOSANTE_LIEN << endl;
             exit(-1);
         }      
         
@@ -141,11 +153,13 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
             cerr << MSSG_ERR_SEULEMENT_DIRECT << endl;
             exit(-1);
         }
-        if ((vecteur[i]->nom == "direct" || vecteur[i]->nom == "chaine") 
-                && vecteur[i + 1]->nom != "engrenage") {
-            cerr << "direct/chaine peut seulement etre suivi d'un engrenage" 
-                << endl;
+        if (vecteur[i]->nom == "direct" && vecteur[i + 1]->nom != "engrenage") {
+            cerr << MSSG_ERR_SEULEMENT_ENGRENAGE_DIRECT << endl;
             exit(-1);
+        }
+        if (vecteur[i]->nom == "chaine" && vecteur[i + 1]->nom != "engrenage") {
+            cerr << MSSG_ERR_SEULEMENT_ENGRENAGE_CHAINE << endl;
+            exit(-1);        
         }
         if (vecteur[i]->nom == "direct" && vecteur[i - 1]->nom == "vis") {
             vecteur[i]->calculerEfficaciteDirectAvecVis(vecteur[i - 1]->nombreDentOuSillon);

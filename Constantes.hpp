@@ -27,6 +27,9 @@ string const MSSG_REQUETE_COUPLE = "Quel est le couple appliqué à la première co
 /* Message d'erreur */
 
 string const MSSG_ERR_COMPOSANTE_APRES_ESSIEU = "Il faut une composante apres un essieu.";
+string const MSSG_ERR_COMPOSANTE_APRES_DIRECT = "Il faut une composante apres un lien direct.";
+string const MSSG_ERR_COMPOSANTE_APRES_CHAINE = "Il faut une composante apres une chaine.";
+string const MSSG_ERR_ALTERNANCE_COMPOSANTE_LIE = "Il faut alterner composantes et liens.";
 string const MSSG_ERR_COMPOSANTE_INVALIDE = "Composante invalide.";
 string const MSSG_ERR_COUPLE_INVALIDE = "Ce n'est pas un couple valide.";
 string const MSSG_ERR_DEVRAIT_NOMBRE_DENT = "Il devrait y avoir une valeur entiere pour le nombre de dents.";
