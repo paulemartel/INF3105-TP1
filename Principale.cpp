@@ -48,8 +48,7 @@ int main(int argc, const char * argv []){
         }
 
         analyseMouvement(vitesseComposante,couple,vecteur);
-        // calcul de l'efficacite totale (je le mets la en attendant)
-        double efficaciteTotale = calculerEfficaciteTotale(vecteur);
+
 
 
         //nouvelle analyse
@@ -84,16 +83,35 @@ est bel et bien un double. Si ce n'est pas le cas, demande a l'utilisateur d'ent
 une nouvelle valeur
 retourne un double
 **/
+
 double demandeDouble(){
     double nombre;
-    while(!(std::cin >> nombre)){
-        std::cout << MSSG_ERR_REQUETE_PAS_DOUBLE << std::endl;
-        cin.clear();
-        cin.ignore(100000, '\n');
-    }
+    bool valide;
+
+    do{
+        valide = true;
+        cin >> nombre;
+        if(!cin) {
+            valide = false;
+            cin.clear();
+            cin.ignore(1000000, '\n');
+        } else {
+            string temp;
+            getline(cin,temp);
+            if(temp.find_first_not_of(" ") != string::npos){
+                valide = false;
+            }
+        }
+        if(!valide){
+            cout << MSSG_ERR_REQUETE_PAS_DOUBLE << endl;
+        }
+        
+    } while (!valide);
+
 
     return nombre;
 }
+
 /**
 Fonction qui vérifie si deux doubles est du meme signe
 return true si c'est le cas sinon false
@@ -166,8 +184,6 @@ double calculR(Objet* composante1, Objet* lien, Objet* composante2){
     } else if(lien->nom == "direct" 
         && composante1->nom == "vis" 
         && composante2->nom == "engrenage"){
-
-
 
         constanteR = (double)(composante2->nombreDentOuSillon)
         /(composante1->nombreDentOuSillon);
