@@ -25,7 +25,7 @@ int main(int argc, const char * argv []){
     while(!finProg){
         // on verifie si un fichier a ete indique en ligne de commande
         if (argc <= 1) {
-            cerr << "Veuillez preciser un fichier en argument" << endl;
+            cerr << MSSG_ERR_MANQUE_FICHIER_ARGUMENT << endl;
             exit(-1); 
         }
         // integrer le fichier a lire
@@ -79,12 +79,12 @@ int main(int argc, const char * argv []){
 
 double calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
-    double efficaciteTotale = 0.0;
+    double efficaciteTotale = 1.0;
 
     for (int i = 0; i < vecteur.size(); ++i) {
         if (vecteur[i]->typePiece == "lien") {
             efficaciteTotale =
-                efficaciteTotale == 0 ?
+                efficaciteTotale == 1.0 ?
                 vecteur[i]->efficacite :
                 efficaciteTotale * vecteur[i]->efficacite;
         }

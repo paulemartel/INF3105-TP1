@@ -58,6 +58,6 @@ string const MSSG_ERR_SEULEMENT_ENGRENAGE_DIRECT = "Seulement un engrenage peut 
 string const MSSG_ERR_SEULEMENT_ENGRENAGE_CHAINE = "Seulement un engrenage peut apparaitre apres une chaine.";
 string const MSSG_ERR_UNE_COMPOSANTE_MINIMUM = "Il doit y avoir au moins une composante.";
 string const MSSG_ERR_VITESSE_INVALIDE = "Ce n'est pas une vitesse valide.";
-
+string const MSSG_ERR_MANQUE_FICHIER_ARGUMENT = "Veuillez entrer un fichier en argument.";
 
 #endif /* CONSTANTES_HPP_ */

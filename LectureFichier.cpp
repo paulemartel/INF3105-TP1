@@ -111,7 +111,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
     validerDonnees(vecteur);
 
     return vecteur;
-} // Fin convertirFichierEnVecteur() 
+} 
 
 void LectureFichier::validerDonnees(vector<Objet*> const& vecteur) {
     validerComposanteFin(vecteur);
@@ -135,7 +135,7 @@ void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
 
 void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
     for (int i = 0; i < vecteur.size(); ++i) {
-        // alterne-t-on composante et lien? indices des composantes toujours impairs
+        
         if (i % 2 == 1 && vecteur[i]->typePiece == "composante") {
             cerr << MSSG_ERR_ALTERNANCE_COMPOSANTE_LIEN << endl;
             exit(-1);
@@ -161,17 +161,3 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
     }
 }
 
-    // tests
-
-    //for (int i = 0; i < vecteur.size(); ++i) {
-    //    Objet* element = vecteur[i];
-    //    cout << "nom : " << element->nom << endl;
-    //    if (element->typePiece == "composante") {
-    //        cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
-    //    } else {
-    //        cout << "efficacite : " << element->efficacite << endl;
-    //    }
-    //    cout << "\n" << endl;
-    //}    
-
-                  
