@@ -140,8 +140,8 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
             cerr << MSSG_ERR_ALTERNANCE_COMPOSANTE_LIEN << endl;
             exit(-1);
         }
-
-        if (vecteur[i]->nom == "vis" && vecteur[i + 1] != nullptr
+        
+        if (vecteur[i]->nom == "vis" && i != (vecteur.size() - 1)
                 && vecteur[i + 1]->nom != "direct") {
             cerr << MSSG_ERR_SEULEMENT_DIRECT << endl;
             exit(-1);
