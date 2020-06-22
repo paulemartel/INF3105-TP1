@@ -23,6 +23,11 @@ int main(int argc, const char * argv []){
 
 
     while(!finProg){
+        // on verifie si un fichier a ete indique en ligne de commande
+        if (argc <= 1) {
+            cerr << "Veuillez preciser un fichier en argument" << endl;
+            exit(-1); 
+        }
         // integrer le fichier a lire
         LectureFichier* fichier = new LectureFichier(argv[1]);
         // valider le fichier et creer le vecteur du mecanisme 
@@ -49,7 +54,18 @@ int main(int argc, const char * argv []){
 
         analyseMouvement(vitesseComposante,couple,vecteur);
 
+// tests
 
+        for (int i = 0; i < vecteur.size(); ++i) {
+            Objet* element = vecteur[i];
+            cout << "nom : " << element->nom << endl;
+            if (element->typePiece == "composante") {
+                cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
+            } else {
+                cout << "efficacite : " << element->efficacite << endl;
+            }
+        cout << "\n" << endl;
+        }
 
         //nouvelle analyse
         std::cout << MSSG_QUESTION_CONTINUER << std::endl;
