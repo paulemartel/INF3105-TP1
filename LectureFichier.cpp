@@ -26,8 +26,11 @@ Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
             finNbr = true;
             debutNbr = false;
         } else if (c != ' ' && c != '\n') {
-            cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT
-                << endl;
+            if (nom == "engrenage") {
+                cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT << endl;
+            } else {
+                cerr << MSSG_ERR_DEVRAIT_SILLON << endl;
+            }
             exit(-1);
         }
     }
