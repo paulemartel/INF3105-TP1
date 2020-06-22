@@ -6,9 +6,8 @@ Direct::Direct(string nomPiece) {
     efficacite = 0.9; 
 }
 
-
 void Direct::calculerEfficaciteDirectAvecVis(int nombreSillon) {
-    //cout << "rentre dans la bonne fonction" << endl; //FLUSHER
+    
     if (nombreSillon == 1) {
         this->efficacite = 0.8;
     } else if (nombreSillon == 2) {

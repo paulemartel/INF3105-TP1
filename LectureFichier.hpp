@@ -18,25 +18,17 @@ using namespace std;
 
 class LectureFichier {
     
-    // attribut
-    //string nomFichier;
-    
+    Objet* creationComposante(ifstream& fichier, string nom);
     void validerComposanteFin(vector<Objet*> vecteur);
     void validerReglesFormationMecanisme(vector<Objet*> vecteur);
-
+    void estVide(ifstream& fichier);
+    void indiquerComposanteOuLienInvalide(vector<Objet*> vecteur);
 public:
     string nomFichier; // rendre private a la fin
 
     LectureFichier(string fichierEntre);
     vector<Objet*> convertirFichierEnVecteur();
-    void validerDonnees(vector<Objet*> vecteur);
+    void validerDonnees(vector<Objet*> const& vecteur);
 };
-// ----- APPELS DANS LA MAIN --------
-//
-// vector<Objet*> vecteur = convertirFichierEnVecteur();
-// validerDonnees(vecteur);
-// double efficaciteTotale = calculerEfficacite(vecteur);
-//
-
 
 #endif
