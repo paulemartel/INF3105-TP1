@@ -11,11 +11,12 @@ void LectureFichier::estVide(ifstream& fichier) {
     }
 }
 
-Objet* LectureFichier::creationEngrenage(ifstream& fichier) {
+Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
     char c;
     int finNbr = false;
     int debutNbr = false;
     string nbrComplet = "";
+    Objet* piece;
     while (finNbr == false && fichier.get(c)) {
         if (isdigit(c) || c == '-') {
             debutNbr = true;
@@ -30,9 +31,22 @@ Objet* LectureFichier::creationEngrenage(ifstream& fichier) {
             exit(-1);
         }
     }
-    int nombreDents = stoi(nbrComplet);
-    Objet* piece = new Engrenage("engrenage", nombreDents);
+    int nombreDentsOuSillons = stoi(nbrComplet);
+    if (nom == "engrenage") {
+        piece = new Engrenage("engrenage", nombreDentsOuSillons);
+    } else {
+        piece = new Vis("vis", nombreDentsOuSillons);
+    }
     return piece;
+}
+
+void LectureFichier::indiquerComposanteOuLienInvalide(vector<Objet*> vecteur) {
+    if (!vecteur.empty() && vecteur[vecteur.size() - 1]->typePiece  == "composante") {
+        cerr << MSSG_ERR_LIEN_INVALIDE << endl;
+    } else {
+        cerr << MSSG_ERR_COMPOSANTE_INVALIDE << endl;
+    }
+    exit(-1);
 }
 
 vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
@@ -65,26 +79,10 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                 finMot = false;
 
                 if (motComplet == "engrenage") {
-                    // TESTS
-                    piece = creationEngrenage(fichier);
-               
+                    piece = creationComposante(fichier, "engrenage");               
+                
                 } else if (motComplet == "vis") {
-                    while (finNbr == false && fichier.get(c)) {
-                        if (isdigit(c) || c == '-') {
-                            debutNbr = true;
-                            nbrComplet += c;
-                        } else if ((c == ' ' || c == '\n')
-                                && debutNbr == true) {
-                            finNbr = true;
-                            debutNbr = false;
-                        } else if (c != ' ' && c != '\n') {
-                            cerr << MSSG_ERR_DEVRAIT_SILLON
-                               << endl;
-                            exit(-1);
-                        }
-                    }
-                    int nombreSillons = stoi(nbrComplet);
-                    piece = new Vis("vis", nombreSillons);
+                    piece = creationComposante(fichier, "vis");
 
                 } else if (motComplet == "essieu") {
                     piece = new Essieu("essieu");
@@ -96,14 +94,7 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                     piece = new Chaine("chaine");
                     
                 } else {
-                    if (!vecteur.empty()
-                            && vecteur[vecteur.size() - 1]->typePiece
-                            == "composante") {
-                        cerr << MSSG_ERR_LIEN_INVALIDE << endl;
-                    } else {
-                        cerr << MSSG_ERR_COMPOSANTE_INVALIDE << endl;
-                    }
-                    exit(-1);
+                    indiquerComposanteOuLienInvalide(vecteur);
                 }
                 vecteur.push_back(piece);
                 motComplet = "";
@@ -156,7 +147,7 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
             exit(-1);
         }
 
-if (vecteur[i]->nom == "direct" && vecteur[i + 1]->nom != "engrenage") {
+        if (vecteur[i]->nom == "direct" && vecteur[i + 1]->nom != "engrenage") {
             cerr << MSSG_ERR_SEULEMENT_ENGRENAGE_DIRECT << endl;
             exit(-1);
         }

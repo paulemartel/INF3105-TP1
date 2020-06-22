@@ -18,10 +18,11 @@ using namespace std;
 
 class LectureFichier {
     
-    Objet* creationEngrenage(ifstream& fichier);
+    Objet* creationComposante(ifstream& fichier, string nom);
     void validerComposanteFin(vector<Objet*> vecteur);
     void validerReglesFormationMecanisme(vector<Objet*> vecteur);
     void estVide(ifstream& fichier);
+    void indiquerComposanteOuLienInvalide(vector<Objet*> vecteur);
 public:
     string nomFichier; // rendre private a la fin
 
