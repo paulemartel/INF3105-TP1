@@ -8,7 +8,7 @@ using namespace std;
 
 
 //declaration de fonctions
-double demandeDouble();
+double demandeDouble(string mssgErreur, string mssgRequete);
 bool memeSigne(double num1,double num2);
 void analyseMouvement(double vitesseComposante, double couple, vector<Objet*> vecteur);
 double calculR(Objet* composante1, Objet* lien, Objet* composante2);
@@ -30,10 +30,12 @@ int main(int argc, const char * argv []){
         
         //demande de requetes a l'utilisateur
         std::cout << MSSG_REQUETE_VITESSE << std::endl;
-        vitesseComposante = demandeDouble();
+        vitesseComposante = demandeDouble(MSSG_ERR_VITESSE_INVALIDE
+            ,MSSG_REQUETE_VITESSE);
 
         std::cout << MSSG_REQUETE_COUPLE << std::endl;
-        couple = demandeDouble();
+        couple = demandeDouble(MSSG_ERR_COUPLE_INVALIDE
+            ,MSSG_REQUETE_COUPLE);
         coupleValide = memeSigne(vitesseComposante,couple);
 
 
@@ -42,7 +44,7 @@ int main(int argc, const char * argv []){
 
             cout << MSSG_ERR_MEME_SIGNE << std::endl;
             std::cout << MSSG_REQUETE_COUPLE << std::endl;
-            couple = demandeDouble();
+            couple = demandeDouble(MSSG_ERR_MEME_SIGNE, MSSG_REQUETE_COUPLE);
             coupleValide = memeSigne(vitesseComposante,couple);
 
         }
@@ -84,7 +86,7 @@ une nouvelle valeur
 retourne un double
 **/
 
-double demandeDouble(){
+double demandeDouble(string mssgErreur, string mssgRequete){
     double nombre;
     bool valide;
 
@@ -103,7 +105,8 @@ double demandeDouble(){
             }
         }
         if(!valide){
-            cout << MSSG_ERR_REQUETE_PAS_DOUBLE << endl;
+            cout << mssgErreur << endl;
+            cout << mssgRequete << endl;
         }
         
     } while (!valide);
@@ -140,9 +143,9 @@ void analyseMouvement(double vitesseComposante, double couple
     for(int i = 0; i<vecteur.size(); i=i+2 ){
 
         //affichage des resultats
-        cout << "V"<< nombre <<"=" 
-        << vitesseInitiale * efficaciteTot <<" C" 
-        << nombre << "=" << coupleIninitial * efficaciteTot << endl;
+        cout << "V"<< nombre <<" = " 
+        << vitesseInitiale * efficaciteTot << "," <<" C" 
+        << nombre << " = " << coupleIninitial * efficaciteTot << endl;
 
         ++nombre;
 
