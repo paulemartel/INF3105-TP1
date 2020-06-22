@@ -10,7 +10,8 @@ using namespace std;
 //declaration de fonctions
 double demandeDouble(string mssgErreur, string mssgRequete);
 bool memeSigne(double num1,double num2);
-void analyseMouvement(double vitesseComposante, double couple, vector<Objet*> vecteur);
+void analyseMouvement(double vitesseComposante,
+ double couple, vector<Objet*> vecteur);
 double calculR(Objet* composante1, Objet* lien, Objet* composante2);
 double calculerEfficaciteTotale(vector<Objet*> vecteur);
 
@@ -49,7 +50,8 @@ int main(int argc, const char * argv []){
 
             cout << MSSG_ERR_MEME_SIGNE << std::endl;
             std::cout << MSSG_REQUETE_COUPLE << std::endl;
-            couple = demandeDouble(MSSG_ERR_MEME_SIGNE, MSSG_REQUETE_COUPLE);
+            couple = demandeDouble(MSSG_ERR_MEME_SIGNE,
+             MSSG_REQUETE_COUPLE);
             coupleValide = memeSigne(vitesseComposante,couple);
 
         }
@@ -129,8 +131,17 @@ bool memeSigne(double num1, double num2){
 
 }
 
-void analyseMouvement(double vitesseComposante, double couple
-    , vector<Objet*> vecteur){
+/**
+Fonction qui fait tous les calcul par rapport a l'analyse
+du mouvement et affiche a l'ecran les resultats multiplies
+avec l'efficacite total
+param : vitesse composante, vitesse de la composante
+        couple, valeur du couple
+        vecteur, vecteur avec la liste des composantes
+        et des liens
+**/
+void analyseMouvement(double vitesseComposante, double couple,
+ vector<Objet*> vecteur){
     double vitesseInitiale = vitesseComposante;
     double vitesseProchain = 0;
 
@@ -174,7 +185,12 @@ void analyseMouvement(double vitesseComposante, double couple
 
     }
 }
-
+/**
+Fonction qui calcule la valeur de la constante R
+param:  composante 1, le 1er objet
+        lien, le lien entre les deux objets
+        composante2, le 2eme objet 
+**/
 double calculR(Objet* composante1, Objet* lien, Objet* composante2){
     double constanteR = 0;
     if(lien->nom == "essieu"){
