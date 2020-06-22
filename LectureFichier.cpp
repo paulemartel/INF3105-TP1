@@ -124,7 +124,8 @@ void LectureFichier::validerDonnees(vector<Objet*> const& vecteur) {
 void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
-        string nomLien = vecteur[vecteur.size() - 2]->nom;
+        string nomLien = vecteur[dernierePosition]->nom;
+
         if (nomLien == "essieu") {
             cerr << MSSG_ERR_COMPOSANTE_APRES_ESSIEU << endl;
         } else if (nomLien == "direct") {
