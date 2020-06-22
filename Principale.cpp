@@ -58,8 +58,6 @@ int main(int argc, const char * argv []){
 
         analyseMouvement(vitesseComposante,couple,vecteur);
 
-
-
         //nouvelle analyse
         std::cout << MSSG_QUESTION_CONTINUER << std::endl;
         std::cin >> reponse;
