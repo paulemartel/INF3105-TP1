@@ -1,3 +1,20 @@
+/*
+ * Lit le fichier entre en argument a la ligne de commande, puis
+ * en extrait le mecanisme (composantes et liens) et les place
+ * dans un vector.
+ *
+ * Auteures : Paule Martel et Gabrielle Poitras
+ * Code permanent : 
+ *     MARP16569700
+ *     POIG16519008
+ * Courriel : 
+ *     martel.paule@courrier.uqam.ca
+ *     poitras.gabrielle.2@courrier.uqam.ca
+ * Cours : INF3105-30
+ * Date : 2020-06-22
+ */
+
+
 #include "LectureFichier.hpp"
 
 LectureFichier::LectureFichier(string fichierEntre) {
