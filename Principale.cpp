@@ -56,19 +56,6 @@ int main(int argc, const char * argv []){
 
         analyseMouvement(vitesseComposante,couple,vecteur);
 
-// tests
-
-        for (int i = 0; i < vecteur.size(); ++i) {
-            Objet* element = vecteur[i];
-            cout << "nom : " << element->nom << endl;
-            if (element->typePiece == "composante") {
-                cout << "nombreDentOuSillon : " << element->nombreDentOuSillon << endl; 
-            } else {
-                cout << "efficacite : " << element->efficacite << endl;
-            }
-        cout << "\n" << endl;
-        }
-
         //nouvelle analyse
         std::cout << MSSG_QUESTION_CONTINUER << std::endl;
         std::cin >> reponse;
