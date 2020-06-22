@@ -26,8 +26,11 @@ Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
             finNbr = true;
             debutNbr = false;
         } else if (c != ' ' && c != '\n') {
-            cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT
-                << endl;
+            if (nom == "engrenage") {
+                cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT << endl;
+            } else {
+                cerr << MSSG_ERR_DEVRAIT_SILLON << endl;
+            }
             exit(-1);
         }
     }
@@ -121,7 +124,8 @@ void LectureFichier::validerDonnees(vector<Objet*> const& vecteur) {
 void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
-        string nomLien = vecteur[vecteur.size() - 2]->nom;
+        string nomLien = vecteur[dernierePosition]->nom;
+
         if (nomLien == "essieu") {
             cerr << MSSG_ERR_COMPOSANTE_APRES_ESSIEU << endl;
         } else if (nomLien == "direct") {
@@ -140,8 +144,8 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
             cerr << MSSG_ERR_ALTERNANCE_COMPOSANTE_LIEN << endl;
             exit(-1);
         }
-
-        if (vecteur[i]->nom == "vis" && vecteur[i + 1] != nullptr
+        
+        if (vecteur[i]->nom == "vis" && i != (vecteur.size() - 1)
                 && vecteur[i + 1]->nom != "direct") {
             cerr << MSSG_ERR_SEULEMENT_DIRECT << endl;
             exit(-1);
