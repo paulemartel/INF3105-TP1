@@ -44,7 +44,8 @@ Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
 }
 
 void LectureFichier::indiquerComposanteOuLienInvalide(vector<Objet*> vecteur) {
-    if (!vecteur.empty() && vecteur[vecteur.size() - 1]->typePiece  == "composante") {
+    if (!vecteur.empty() && vecteur[vecteur.size() - 1]->typePiece 
+            == "composante") {
         cerr << MSSG_ERR_LIEN_INVALIDE << endl;
     } else {
         cerr << MSSG_ERR_COMPOSANTE_INVALIDE << endl;
@@ -151,16 +152,19 @@ void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
             exit(-1);
         }
 
-        if (vecteur[i]->nom == "direct" && vecteur[i + 1]->nom != "engrenage") {
+        if (vecteur[i]->nom == "direct" && vecteur[i + 1]->nom 
+                != "engrenage") {
             cerr << MSSG_ERR_SEULEMENT_ENGRENAGE_DIRECT << endl;
             exit(-1);
         }
-        if (vecteur[i]->nom == "chaine" && vecteur[i + 1]->nom != "engrenage") {
+        if (vecteur[i]->nom == "chaine" && vecteur[i + 1]->nom 
+                != "engrenage") {
             cerr << MSSG_ERR_SEULEMENT_ENGRENAGE_CHAINE << endl;
             exit(-1);
         }
         if (vecteur[i]->nom == "direct" && vecteur[i - 1]->nom == "vis") {
-            vecteur[i]->calculerEfficaciteDirectAvecVis(vecteur[i - 1]->nombreDentOuSillon);
+            vecteur[i]->calculerEfficaciteDirectAvecVis(
+                vecteur[i - 1]->nombreDentOuSillon);
         }
     }
 }

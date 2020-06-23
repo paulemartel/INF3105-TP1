@@ -90,9 +90,9 @@ double calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
 
 /**
-Fonction qui se charge de s'assurer que la valeur entree en input par l'utilisateur
-est bel et bien un double. Si ce n'est pas le cas, demande a l'utilisateur d'entrer
-une nouvelle valeur
+Fonction qui se charge de s'assurer que la valeur entree 
+en input par l'utilisateur est bel et bien un double. Si ce n'est pas le cas, 
+demande a l'utilisateur d'entrer une nouvelle valeur
 retourne un double
 **/
 
