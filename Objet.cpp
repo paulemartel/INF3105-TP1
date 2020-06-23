@@ -1,3 +1,3 @@
 #include "Objet.hpp"
 
-void Objet::calculerEfficaciteDirectAvecVis(int nombreSillon) {}
+void Objet::calculerEfficaciteDirectAvecVis(int const & nombreSillon) {}
