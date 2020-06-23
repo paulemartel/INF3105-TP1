@@ -19,9 +19,9 @@ int const NOMBRE_SILLON_MAXIMUM = 4;
 
 /* Message */
 
-string const MSSG_QUESTION_CONTINUER = "Voulez-vous lancer une autre analyse ? (‘n’ pour non, autre pour oui.)";
-string const MSSG_REQUETE_VITESSE = "Quelle est la vitesse de rotation de la première composante ?";
-string const MSSG_REQUETE_COUPLE = "Quel est le couple appliqué à la première composante ?";
+string const MSSG_QUESTION_CONTINUER = "Voulez-vous lancer une autre analyse ? ('n' pour non, autre pour oui.)";
+string const MSSG_REQUETE_VITESSE = "Quelle est la vitesse de rotation de la premiere composante ?";
+string const MSSG_REQUETE_COUPLE = "Quel est le couple applique a la premiere composante ?";
 
 
 /* Message d'erreur */
@@ -38,7 +38,7 @@ string const MSSG_ERR_DEVRAIT_NOMBRE_DENT = "Il devrait y avoir une valeur entie
 string const MSSG_ERR_DEVRAIT_SILLON = "Il devrait y avoir une valeur entiere pour le nombre de sillons.";
 string const MSSG_ERR_FICHIER_INEXISTANT = "Le fichier n'existe pas.";
 string const MSSG_ERR_LIEN_INVALIDE = "Lien invalide.";
-string const MSSG_ERR_MEME_SIGNE = "Les deux valeurs doivent avoir le même signe.";
+string const MSSG_ERR_MEME_SIGNE = "Les deux valeurs doivent avoir le meme signe.";
 string const MSSG_ERR_NOMBRE_ARGUMENT = "Il devrait y avoir un et un seul argument.";
 string const MSSG_ERR_NOMBRE_DENT_MINIMUM_P1 = "Il doit y avoir un minimum de ";
 string const MSSG_ERR_NOMBRE_DENT_MINIMUM_P2 = " dents.";

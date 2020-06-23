@@ -68,6 +68,11 @@ int main(int argc, const char * argv []){
     }
 }
 
+/**
+Fonction qui calcule l'efficacite totale
+param:  vecteur de liens et composantes
+return: l'efficacite totale
+**/
 double calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
     double efficaciteTotale = 1.0;
