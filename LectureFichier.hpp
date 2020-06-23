@@ -34,16 +34,74 @@ using namespace std;
 
 class LectureFichier {
     
-    Objet* creationComposante(ifstream& fichier, string nom);
-    void validerComposanteFin(vector<Objet*> vecteur);
-    void validerReglesFormationMecanisme(vector<Objet*> vecteur);
+    /**
+     * Verifie si le fichier fourni en argument est vide, 
+     * et, le cas echeant, met fin au programme.
+     * 
+     * @param fichier objet ifstream renfermant le fichier lu 
+     *     par le programme
+     */ 
     void estVide(ifstream& fichier);
-    void indiquerComposanteOuLienInvalide(vector<Objet*> vecteur);
-public:
-    string nomFichier; // rendre private a la fin
 
+    /**
+     * Lit le fichier fourni et en analyse le contenu pour
+     * degager le nombre de dents ou de sillons, selon le
+     * nom de la composante, et creer un objet Engrenage ou Vis.
+     * 
+     * @param fichier objet ifstream renfermant le fichier lu
+     *     par le programme
+     * @param nom nom de la composante visee (Engrenage ou Vis)
+     * @return pointeur d'Objet (Engrenage ou Vis)
+     */ 
+    Objet* creationComposante(ifstream& fichier, string nom);
+       
+    /**
+     * Determine le type de mecanisme (composante ou lien) invalide
+     * et affiche le message d'erreur qui convient.
+     * 
+     * @param vecteur liste des composantes et liens jusqu'a present 
+     */ 
+    void indiquerComposanteOuLienInvalide(vector<Objet*> vecteur);
+       
+    /**
+     * Verifie si le vecteur se termine bel et bien par une composante.
+     * 
+     * @param vecteur liste complete des composantes et liens
+     */ 
+    void validerComposanteFin(vector<Objet*> vecteur);
+       
+    /**
+     * Verifie si le mecanisme suit bel et bien les regles de formation.
+     * 
+     * @param vecteur liste complete des composantes et liens
+     */ 
+    void validerReglesFormationMecanisme(vector<Objet*> vecteur);   
+    
+public:
+    string nomFichier;
+       
+    /**
+     * Construit un objet LectureFichier.
+     * 
+     * @param fichierEntre nom du fichier lu par le programmme
+     */ 
     LectureFichier(string fichierEntre);
+       
+    /**
+     * Lit et analyse le fichier donne en argument pour construire
+     * un vecteur renfermant chaque composante et lien du mecanisme,
+     * avec toutes leurs caracteristiques, dans le meme ordre que
+     * dans le fichier original.
+     * 
+     * @return vector renfermant des pointeurs d'Objet
+     */ 
     vector<Objet*> convertirFichierEnVecteur();
+       
+    /**
+     * Verifie si le vecteur remplit tous les criteres de validite.
+     * 
+     * @param vecteur liste complete des composantes et liens
+     */ 
     void validerDonnees(vector<Objet*> const& vecteur);
 };
 

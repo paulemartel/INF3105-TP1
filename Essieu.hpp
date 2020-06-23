@@ -23,6 +23,9 @@ using namespace std;
 
 class Essieu : public Lien {
 public:
+    /**
+     * Construit un objet Essieu. 
+    */ 
     Essieu();
 
 };

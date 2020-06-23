@@ -28,6 +28,14 @@ public:
     double efficacite;
     string typePiece;
     
+    /**
+     * (fonction surchargee dans Direct)
+     * Etablit, selon le nombre de sillons de la vis qui
+     * precede l'objet Direct, l'efficacite de ce dernier.
+     * 
+     * @param nombreSillon nombre de sillons de l'objet Vis 
+     *     qui precede
+    */  
     virtual void calculerEfficaciteDirectAvecVis(int nombreSillon);
 };
 

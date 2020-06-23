@@ -24,6 +24,13 @@ using namespace std;
 class Vis : public Composante {
       
 public:
+
+    /**
+     * Construit un objet Vis.
+     * 
+     * @param nombreSillon nombre de sillons associe
+     *     a la vis dans le fichier d'entree
+    */ 
     Vis (int nombreSillon);
 };
 #endif

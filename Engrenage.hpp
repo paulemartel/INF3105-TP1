@@ -24,6 +24,12 @@ using namespace std;
 class Engrenage : public Composante {
 
 public:
+    /**
+     * Construit un objet Engrenage.
+     * 
+     * @param nombreDent nombre de dents associe
+     *     a l'engrenage dans le fichier d'entree
+    */ 
     Engrenage (int nombreDent);
 };
 #endif

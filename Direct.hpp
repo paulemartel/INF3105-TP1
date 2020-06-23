@@ -23,7 +23,18 @@ using namespace std;
 
 class Direct : public Lien {
 public:
+/**
+ * Construit un objet Direct.
+*/
     Direct();
+
+/**
+ * Etablit, selon le nombre de sillons de la vis qui
+ * precede l'objet Direct, l'efficacite de ce dernier.
+ * 
+ * @param nombreSillon nombre de sillons de l'objet Vis 
+ *     qui precede
+*/  
     void calculerEfficaciteDirectAvecVis(int nombreSillon);
 };
 

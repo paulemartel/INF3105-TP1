@@ -1,5 +1,5 @@
 #include "Direct.hpp"
-#include <iostream> // FLUSHER
+
 Direct::Direct() {
     nom = "direct";
     typePiece = "lien";
