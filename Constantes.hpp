@@ -1,5 +1,3 @@
-
-
 #ifndef CONSTANTES_HPP_
 #define CONSTANTES_HPP_
 
