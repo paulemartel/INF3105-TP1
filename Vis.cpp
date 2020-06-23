@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-Vis::Vis (int nombreSillon) {
+Vis::Vis (int const & nombreSillon) {
     
     if (nombreSillon % 1 != 0) {
         cerr << MSSG_ERR_DEVRAIT_SILLON << endl;

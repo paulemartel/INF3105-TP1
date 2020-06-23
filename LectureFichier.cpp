@@ -1,6 +1,6 @@
 #include "LectureFichier.hpp"
 
-LectureFichier::LectureFichier(string fichierEntre) {
+LectureFichier::LectureFichier(string const & fichierEntre) {
     nomFichier = fichierEntre;
 }
 
@@ -11,7 +11,8 @@ void LectureFichier::estVide(ifstream& fichier) {
     }
 }
 
-Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
+Objet* LectureFichier::creationComposante(ifstream& fichier, 
+        string const & nom) {
     char c;
     int finNbr = false;
     int debutNbr = false;
@@ -43,7 +44,8 @@ Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
     return piece;
 }
 
-void LectureFichier::indiquerComposanteOuLienInvalide(vector<Objet*> vecteur) {
+void LectureFichier::indiquerComposanteOuLienInvalide(
+        vector<Objet*> const & vecteur) {
     if (!vecteur.empty() && vecteur[vecteur.size() - 1]->typePiece 
             == "composante") {
         cerr << MSSG_ERR_LIEN_INVALIDE << endl;
@@ -117,12 +119,12 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
     return vecteur;
 } 
 
-void LectureFichier::validerDonnees(vector<Objet*> const& vecteur) {
+void LectureFichier::validerDonnees(vector<Objet*> const & vecteur) {
     validerComposanteFin(vecteur);
     validerReglesFormationMecanisme(vecteur);
 }
 
-void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
+void LectureFichier::validerComposanteFin(vector<Objet*> const & vecteur) {
     int dernierePosition = vecteur.size() - 1;
     if (vecteur[dernierePosition]->typePiece != "composante") {
         string nomLien = vecteur[dernierePosition]->nom;
@@ -138,7 +140,8 @@ void LectureFichier::validerComposanteFin(vector<Objet*> vecteur) {
     }
 }
 
-void LectureFichier::validerReglesFormationMecanisme(vector<Objet*> vecteur) {
+void LectureFichier::validerReglesFormationMecanisme(
+        vector<Objet*> const & vecteur) {
     for (int i = 0; i < vecteur.size(); ++i) {
         
         if (i % 2 == 1 && vecteur[i]->typePiece == "composante") {

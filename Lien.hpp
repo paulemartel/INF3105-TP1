@@ -20,8 +20,6 @@
 #include <string>
 using namespace std;
 
-class Lien : public Objet {
-
-};
+class Lien : public Objet {};
 
 #endif

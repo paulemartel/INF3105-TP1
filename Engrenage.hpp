@@ -30,6 +30,6 @@ public:
      * @param nombreDent nombre de dents associe
      *     a l'engrenage dans le fichier d'entree
     */ 
-    Engrenage (int nombreDent);
+    Engrenage (int const & nombreDent);
 };
 #endif

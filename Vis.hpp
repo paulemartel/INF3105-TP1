@@ -31,6 +31,6 @@ public:
      * @param nombreSillon nombre de sillons associe
      *     a la vis dans le fichier d'entree
     */ 
-    Vis (int nombreSillon);
+    Vis (int const & nombreSillon);
 };
 #endif

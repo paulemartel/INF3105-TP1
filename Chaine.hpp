@@ -23,12 +23,10 @@ using namespace std;
 
 class Chaine : public Lien {
 public:
-
 /**
  * Construit un objet Chaine.
 */
     Chaine();
-
 };
 
 #endif

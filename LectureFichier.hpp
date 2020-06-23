@@ -53,7 +53,7 @@ class LectureFichier {
      * @param nom nom de la composante visee (Engrenage ou Vis)
      * @return pointeur d'Objet (Engrenage ou Vis)
      */ 
-    Objet* creationComposante(ifstream& fichier, string nom);
+    Objet* creationComposante(ifstream& fichier, string const & nom);
        
     /**
      * Determine le type de mecanisme (composante ou lien) invalide
@@ -61,21 +61,21 @@ class LectureFichier {
      * 
      * @param vecteur liste des composantes et liens jusqu'a present 
      */ 
-    void indiquerComposanteOuLienInvalide(vector<Objet*> vecteur);
+    void indiquerComposanteOuLienInvalide(vector<Objet*> const & vecteur);
        
     /**
      * Verifie si le vecteur se termine bel et bien par une composante.
      * 
      * @param vecteur liste complete des composantes et liens
      */ 
-    void validerComposanteFin(vector<Objet*> vecteur);
+    void validerComposanteFin(vector<Objet*> const & vecteur);
        
     /**
      * Verifie si le mecanisme suit bel et bien les regles de formation.
      * 
      * @param vecteur liste complete des composantes et liens
      */ 
-    void validerReglesFormationMecanisme(vector<Objet*> vecteur);   
+    void validerReglesFormationMecanisme(vector<Objet*> const & vecteur);   
     
 public:
     string nomFichier;
@@ -85,7 +85,7 @@ public:
      * 
      * @param fichierEntre nom du fichier lu par le programmme
      */ 
-    LectureFichier(string fichierEntre);
+    LectureFichier(string const & fichierEntre);
        
     /**
      * Lit et analyse le fichier donne en argument pour construire

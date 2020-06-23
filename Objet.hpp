@@ -36,7 +36,7 @@ public:
      * @param nombreSillon nombre de sillons de l'objet Vis 
      *     qui precede
     */  
-    virtual void calculerEfficaciteDirectAvecVis(int nombreSillon);
+    virtual void calculerEfficaciteDirectAvecVis(int const & nombreSillon);
 };
 
 #endif

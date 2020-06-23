@@ -6,7 +6,7 @@ Direct::Direct() {
     efficacite = 0.9; 
 }
 
-void Direct::calculerEfficaciteDirectAvecVis(int nombreSillon) {
+void Direct::calculerEfficaciteDirectAvecVis(int const & nombreSillon) {
     
     if (nombreSillon == 1) {
         this->efficacite = 0.8;

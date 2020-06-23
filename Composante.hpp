@@ -20,8 +20,6 @@
 #include <string>
 using namespace std;
 
-class Composante : public Objet {
-
-};
+class Composante : public Objet {};
 
 #endif
