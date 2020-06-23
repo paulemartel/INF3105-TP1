@@ -36,9 +36,9 @@ Objet* LectureFichier::creationComposante(ifstream& fichier, string nom) {
     }
     int nombreDentsOuSillons = stoi(nbrComplet);
     if (nom == "engrenage") {
-        piece = new Engrenage("engrenage", nombreDentsOuSillons);
+        piece = new Engrenage(nombreDentsOuSillons);
     } else {
-        piece = new Vis("vis", nombreDentsOuSillons);
+        piece = new Vis(nombreDentsOuSillons);
     }
     return piece;
 }
@@ -88,13 +88,13 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
                     piece = creationComposante(fichier, "vis");
 
                 } else if (motComplet == "essieu") {
-                    piece = new Essieu("essieu");
+                    piece = new Essieu();
                
                 } else if (motComplet == "direct") {
-                    piece = new Direct("direct");
+                    piece = new Direct();
                
                 } else if (motComplet == "chaine") {
-                    piece = new Chaine("chaine");
+                    piece = new Chaine();
                     
                 } else {
                     indiquerComposanteOuLienInvalide(vecteur);

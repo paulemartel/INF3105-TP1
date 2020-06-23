@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-Vis::Vis (string nomPiece, int nombreSillon) {
+Vis::Vis (int nombreSillon) {
     
     if (nombreSillon % 1 != 0) {
         cerr << MSSG_ERR_DEVRAIT_SILLON << endl;
@@ -16,7 +16,7 @@ Vis::Vis (string nomPiece, int nombreSillon) {
         cerr << MSSG_ERR_NOMBRE_SILLON << endl;
         exit(-1);
     }
-    nom = nomPiece;
+    nom = "vis";
     typePiece = "composante";
 }
 

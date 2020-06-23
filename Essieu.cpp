@@ -1,7 +1,7 @@
 #include "Essieu.hpp"
 
-Essieu::Essieu(string nomPiece) {
-    nom = nomPiece;
+Essieu::Essieu() {
+    nom = "essieu";
     typePiece = "lien";
     efficacite = 1.0;
 }

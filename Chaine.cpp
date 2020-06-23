@@ -3,11 +3,9 @@
 
 /**
  * Construit un objet Chaine.
- * 
- * @param nomPiece le nom de la piece ("chaine", ici)
 */
-Chaine::Chaine(string nomPiece) {
-    nom = nomPiece;
+Chaine::Chaine() {
+    nom = "chaine";
     typePiece = "lien";
     efficacite = 0.8;
 }

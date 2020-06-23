@@ -24,6 +24,6 @@ using namespace std;
 class Engrenage : public Composante {
 
 public:
-    Engrenage (string nomPiece, int nombreDent);
+    Engrenage (int nombreDent);
 };
 #endif

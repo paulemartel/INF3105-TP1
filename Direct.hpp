@@ -23,7 +23,7 @@ using namespace std;
 
 class Direct : public Lien {
 public:
-    Direct(string nomPiece);
+    Direct();
     void calculerEfficaciteDirectAvecVis(int nombreSillon);
 };
 

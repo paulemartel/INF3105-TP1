@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-Engrenage::Engrenage (string nomPiece, int nombreDent) {
+Engrenage::Engrenage (int nombreDent) {
     
     if (nombreDent % 1 != 0) {
         cerr << MSSG_ERR_DEVRAIT_NOMBRE_DENT << endl;
@@ -15,7 +15,7 @@ Engrenage::Engrenage (string nomPiece, int nombreDent) {
         cerr << MSSG_ERR_NOMBRE_DENT_MINIMUM << endl;
         exit(-1);
     }
-    nom = nomPiece;
+    nom = "engrenage";
     typePiece = "composante";
 }
 

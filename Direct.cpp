@@ -1,7 +1,7 @@
 #include "Direct.hpp"
 #include <iostream> // FLUSHER
-Direct::Direct(string nomPiece) {
-    nom = nomPiece;
+Direct::Direct() {
+    nom = "direct";
     typePiece = "lien";
     efficacite = 0.9; 
 }

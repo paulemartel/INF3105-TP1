@@ -23,7 +23,7 @@ using namespace std;
 
 class Chaine : public Lien {
 public:
-    Chaine(string nomPiece);
+    Chaine();
 
 };
 
