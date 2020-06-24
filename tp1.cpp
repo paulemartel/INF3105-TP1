@@ -85,7 +85,7 @@ double calculerEfficaciteTotale(vector<Objet*> vecteur) {
 }
 
 /**
- * Fonction qui se charge de s'assurer que la valeur entree 
+ * Se charge de s'assurer que la valeur entree 
  * en input par l'utilisateur est bel et bien un double. 
  * Si ce n'est pas le cas, demande a l'utilisateur d'entrer une 
  * nouvelle valeur.
@@ -124,7 +124,7 @@ double demandeDouble(string mssgErreur, string mssgRequete){
 }
 
 /**
- * Fonction qui verifie si deux doubles sont du meme signe.
+ * Verifie si deux doubles sont du meme signe.
  * 
  * @param num1 premier double entre par l'utilisateur
  * @param num2 deuxieme double entre par l'utilisateur
@@ -136,7 +136,7 @@ bool memeSigne(double num1, double num2){
 }
 
 /**
- * Fonction qui fait tous les calcul par rapport a l'analyse
+ * Fait tous les calcul par rapport a l'analyse
  * du mouvement et affiche a l'ecran les resultats multiplies
  * par l'efficacite totale.
  * 
@@ -187,7 +187,7 @@ void analyseMouvement(double vitesseComposante, double couple,
 }
 
 /**
- * Fonction qui calcule la valeur de la constante R.
+ * Calcule la valeur de la constante R.
  * 
  * @param composante1 le 1er objet
  * @param lien le lien entre les deux objets

@@ -1,5 +1,5 @@
 # Makefile pour Devoir 1
-NOM=Principale
+NOM=tp1
 FLAGS=
 CC= g++
 OBJ=Chaine.o\
