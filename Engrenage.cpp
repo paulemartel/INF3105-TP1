@@ -1,6 +1,5 @@
 #include "Engrenage.hpp"
 #include "Constantes.hpp"
-
 #include <iostream>
 
 Engrenage::Engrenage (int const & nombreDent) {

@@ -23,7 +23,7 @@ int main(int argc, const char * argv []){
     string reponse("");
 
     while(!finProg){
-        //on verifie si un fichier a ete indique en ligne de commande
+        //verifie si un fichier a ete indique en ligne de commande
         if (argc <= 1) {
             cerr << MSSG_ERR_MANQUE_FICHIER_ARGUMENT << endl;
             exit(-1); 
@@ -65,7 +65,7 @@ int main(int argc, const char * argv []){
 }
 
 /**
- * Fonction qui calcule l'efficacite totale.
+ * Calcule l'efficacite totale.
  * 
  * @param vecteur vecteur de liens et composantes
  * @return l'efficacite totale
