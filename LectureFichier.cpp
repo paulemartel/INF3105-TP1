@@ -18,6 +18,7 @@ Objet* LectureFichier::creationComposante(ifstream& fichier,
     int debutNbr = false;
     string nbrComplet = "";
     Objet* piece;
+
     while (finNbr == false && fichier.get(c)) {
         if (isdigit(c) || c == '-') {
             debutNbr = true;
@@ -35,7 +36,9 @@ Objet* LectureFichier::creationComposante(ifstream& fichier,
             exit(-1);
         }
     }
+
     int nombreDentsOuSillons = stoi(nbrComplet);
+
     if (nom == "engrenage") {
         piece = new Engrenage(nombreDentsOuSillons);
     } else {
@@ -73,14 +76,15 @@ vector<Objet*> LectureFichier::convertirFichierEnVecteur() {
 
         while (fichier.get(c)) {
             Objet * piece;
+
             if (c != ' ' && c != '\n') {
                 debutMot = true;
                 motComplet += c;
             } else if (debutMot == true && (c == ' ' || c == '\n')) {
                 finMot = true;
                 debutMot = false;
-                
             }
+
             if (finMot == true) {
                 finMot = false;
 
@@ -171,4 +175,3 @@ void LectureFichier::validerReglesFormationMecanisme(
         }
     }
 }
-

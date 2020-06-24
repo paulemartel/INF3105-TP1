@@ -17,7 +17,6 @@
  * Date : 2020-06-22
  */
 
-
 #include <fstream>
 #include <iostream>
 #include <string>

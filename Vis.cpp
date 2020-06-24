@@ -1,6 +1,5 @@
 #include "Vis.hpp"
 #include "Constantes.hpp"
-
 #include <iostream>
 
 Vis::Vis (int const & nombreSillon) {
@@ -19,4 +18,3 @@ Vis::Vis (int const & nombreSillon) {
     nom = "vis";
     typePiece = "composante";
 }
-

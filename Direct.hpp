@@ -17,8 +17,8 @@
  */
 
 #include "Lien.hpp"
-
 #include <string>
+
 using namespace std;
 
 class Direct : public Lien {

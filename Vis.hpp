@@ -17,14 +17,13 @@
  */
 
 #include "Composante.hpp"
-
 #include <string>
+
 using namespace std;
 
 class Vis : public Composante {
       
 public:
-
     /**
      * Construit un objet Vis.
      * 
@@ -33,4 +32,5 @@ public:
     */ 
     Vis (int const & nombreSillon);
 };
+
 #endif

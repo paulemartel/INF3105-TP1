@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Constantes.hpp"
 #include <vector>
+#include "Constantes.hpp"
 #include "LectureFichier.hpp"
 
 using namespace std;
@@ -10,8 +10,8 @@ using namespace std;
 //declaration de fonctions
 double demandeDouble(string mssgErreur, string mssgRequete);
 bool memeSigne(double num1,double num2);
-void analyseMouvement(double vitesseComposante,
- double couple, vector<Objet*> vecteur);
+void analyseMouvement(double vitesseComposante, double couple, 
+    vector<Objet*> vecteur);
 double calculR(Objet* composante1, Objet* lien, Objet* composante2);
 double calculerEfficaciteTotale(vector<Objet*> vecteur);
 
@@ -20,58 +20,55 @@ int main(int argc, const char * argv []){
     bool coupleValide = true;
     double vitesseComposante = 0;
     double couple = 0;
-    std::string reponse("");
-
+    string reponse("");
 
     while(!finProg){
-        // on verifie si un fichier a ete indique en ligne de commande
+        //on verifie si un fichier a ete indique en ligne de commande
         if (argc <= 1) {
             cerr << MSSG_ERR_MANQUE_FICHIER_ARGUMENT << endl;
             exit(-1); 
         }
-        // integrer le fichier a lire
+        
         LectureFichier* fichier = new LectureFichier(argv[1]);
-        // valider le fichier et creer le vecteur du mecanisme 
+        
         vector<Objet*> vecteur = fichier->convertirFichierEnVecteur();
         
         //demande de requetes a l'utilisateur
-        std::cout << MSSG_REQUETE_VITESSE << std::endl;
-        vitesseComposante = demandeDouble(MSSG_ERR_VITESSE_INVALIDE
-            ,MSSG_REQUETE_VITESSE);
+        cout << MSSG_REQUETE_VITESSE << endl;
+        vitesseComposante = demandeDouble(MSSG_ERR_VITESSE_INVALIDE, 
+            MSSG_REQUETE_VITESSE);
 
-        std::cout << MSSG_REQUETE_COUPLE << std::endl;
-        couple = demandeDouble(MSSG_ERR_COUPLE_INVALIDE
-            ,MSSG_REQUETE_COUPLE);
+        cout << MSSG_REQUETE_COUPLE << endl;
+        couple = demandeDouble(MSSG_ERR_COUPLE_INVALIDE, 
+            MSSG_REQUETE_COUPLE);
         coupleValide = memeSigne(vitesseComposante,couple);
-
 
         //verification si les deux valeurs sont du meme signe
         while(!coupleValide){
 
-            cout << MSSG_ERR_MEME_SIGNE << std::endl;
-            std::cout << MSSG_REQUETE_COUPLE << std::endl;
+            cout << MSSG_ERR_MEME_SIGNE << endl;
+            cout << MSSG_REQUETE_COUPLE << endl;
             couple = demandeDouble(MSSG_ERR_MEME_SIGNE,
-             MSSG_REQUETE_COUPLE);
+                MSSG_REQUETE_COUPLE);
             coupleValide = memeSigne(vitesseComposante,couple);
-
         }
 
         analyseMouvement(vitesseComposante,couple,vecteur);
 
         //nouvelle analyse
-        std::cout << MSSG_QUESTION_CONTINUER << std::endl;
-        std::cin >> reponse;
+        cout << MSSG_QUESTION_CONTINUER << endl;
+        cin >> reponse;
         if(reponse.compare("n") == 0){
             finProg = true;
         }
-    
     }
 }
 
 /**
-Fonction qui calcule l'efficacite totale
-param:  vecteur de liens et composantes
-return: l'efficacite totale
+ * Fonction qui calcule l'efficacite totale.
+ * 
+ * @param vecteur vecteur de liens et composantes
+ * @return l'efficacite totale
 **/
 double calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
@@ -79,8 +76,7 @@ double calculerEfficaciteTotale(vector<Objet*> vecteur) {
 
     for (int i = 0; i < vecteur.size(); ++i) {
         if (vecteur[i]->typePiece == "lien") {
-            efficaciteTotale =
-                efficaciteTotale == 1.0 ?
+            efficaciteTotale = efficaciteTotale == 1.0 ?
                 vecteur[i]->efficacite :
                 efficaciteTotale * vecteur[i]->efficacite;
         }
@@ -88,19 +84,22 @@ double calculerEfficaciteTotale(vector<Objet*> vecteur) {
     return efficaciteTotale;
 }
 
-
 /**
-Fonction qui se charge de s'assurer que la valeur entree 
-en input par l'utilisateur est bel et bien un double. Si ce n'est pas le cas, 
-demande a l'utilisateur d'entrer une nouvelle valeur
-retourne un double
+ * Fonction qui se charge de s'assurer que la valeur entree 
+ * en input par l'utilisateur est bel et bien un double. 
+ * Si ce n'est pas le cas, demande a l'utilisateur d'entrer une 
+ * nouvelle valeur.
+ * 
+ * @param mssgErreur message d'erreur qui s'affiche
+ * @param mssgRequete nouvelle requete
+ * @return un double
 **/
 
 double demandeDouble(string mssgErreur, string mssgRequete){
     double nombre;
     bool valide;
 
-    do{
+    do {
         valide = true;
         cin >> nombre;
         if(!cin) {
@@ -121,43 +120,42 @@ double demandeDouble(string mssgErreur, string mssgRequete){
         
     } while (!valide);
 
-
     return nombre;
 }
 
 /**
-Fonction qui vérifie si deux doubles est du meme signe
-return true si c'est le cas sinon false
+ * Fonction qui verifie si deux doubles sont du meme signe.
+ * 
+ * @param num1 premier double entre par l'utilisateur
+ * @param num2 deuxieme double entre par l'utilisateur
+ * @return true si c'est le cas sinon false
 **/
 bool memeSigne(double num1, double num2){
 
-    return ((num1 >= 0 && num2 >= 0) 
-        || (num1 < 0 && num2 < 0));
-
+    return ((num1 >= 0 && num2 >= 0) || (num1 < 0 && num2 < 0));
 }
 
 /**
-Fonction qui fait tous les calcul par rapport a l'analyse
-du mouvement et affiche a l'ecran les resultats multiplies
-avec l'efficacite total
-param : vitesse composante, vitesse de la composante
-        couple, valeur du couple
-        vecteur, vecteur avec la liste des composantes
-        et des liens
+ * Fonction qui fait tous les calcul par rapport a l'analyse
+ * du mouvement et affiche a l'ecran les resultats multiplies
+ * par l'efficacite totale.
+ * 
+ * @param vitesseComposante vitesse de la composante
+ * @param couple valeur du couple
+ * @param vecteur liste des composantes et des liens
 **/
 void analyseMouvement(double vitesseComposante, double couple,
- vector<Objet*> vecteur){
+        vector<Objet*> vecteur){
     double vitesseInitiale = vitesseComposante;
     double vitesseProchain = 0;
 
     double coupleIninitial = couple;
-    double coupleProchain  =0;
+    double coupleProchain  = 0;
 
     double constanteR = 0;
     double efficaciteTot = calculerEfficaciteTotale(vecteur);
 
     int nombre = 0;
-
 
     for(int i = 0; i<vecteur.size(); i=i+2 ){
 
@@ -184,17 +182,16 @@ void analyseMouvement(double vitesseComposante, double couple,
 
         vitesseInitiale = vitesseProchain;
         coupleIninitial = coupleProchain;
-
         }
-
-
     }
 }
+
 /**
-Fonction qui calcule la valeur de la constante R
-param:  composante 1, le 1er objet
-        lien, le lien entre les deux objets
-        composante2, le 2eme objet 
+ * Fonction qui calcule la valeur de la constante R.
+ * 
+ * @param composante1 le 1er objet
+ * @param lien le lien entre les deux objets
+ * @param composante2 le 2eme objet 
 **/
 double calculR(Objet* composante1, Objet* lien, Objet* composante2){
     double constanteR = 0;
@@ -224,6 +221,3 @@ double calculR(Objet* composante1, Objet* lien, Objet* composante2){
 
     return constanteR;
 }
-
-
-

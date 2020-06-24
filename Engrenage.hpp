@@ -17,8 +17,8 @@
  */
 
 #include "Composante.hpp"
-
 #include <string>
+
 using namespace std;
 
 class Engrenage : public Composante {

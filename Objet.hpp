@@ -33,8 +33,7 @@ public:
      * Etablit, selon le nombre de sillons de la vis qui
      * precede l'objet Direct, l'efficacite de ce dernier.
      * 
-     * @param nombreSillon nombre de sillons de l'objet Vis 
-     *     qui precede
+     * @param nombreSillon nombre de sillons de l'objet Vis qui precede
     */  
     virtual void calculerEfficaciteDirectAvecVis(int const & nombreSillon);
 };

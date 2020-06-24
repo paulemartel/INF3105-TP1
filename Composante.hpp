@@ -16,8 +16,8 @@
  */
 
 #include "Objet.hpp"
-
 #include <string>
+
 using namespace std;
 
 class Composante : public Objet {};
