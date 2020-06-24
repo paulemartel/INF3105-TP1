@@ -34,11 +34,11 @@ int main(int argc, const char * argv []){
         vector<Objet*> vecteur = fichier->convertirFichierEnVecteur();
         
         //demande de requetes a l'utilisateur
-        cout << MSSG_REQUETE_VITESSE << endl;
+        cout << MSSG_REQUETE_VITESSE << ESPACE_DE_FIN;
         vitesseComposante = demandeDouble(MSSG_ERR_VITESSE_INVALIDE, 
             MSSG_REQUETE_VITESSE);
 
-        cout << MSSG_REQUETE_COUPLE << endl;
+        cout << MSSG_REQUETE_COUPLE << ESPACE_DE_FIN;
         couple = demandeDouble(MSSG_ERR_COUPLE_INVALIDE, 
             MSSG_REQUETE_COUPLE);
         coupleValide = memeSigne(vitesseComposante,couple);
@@ -47,7 +47,7 @@ int main(int argc, const char * argv []){
         while(!coupleValide){
 
             cout << MSSG_ERR_MEME_SIGNE << endl;
-            cout << MSSG_REQUETE_COUPLE << endl;
+            cout << MSSG_REQUETE_COUPLE << ESPACE_DE_FIN;
             couple = demandeDouble(MSSG_ERR_MEME_SIGNE,
                 MSSG_REQUETE_COUPLE);
             coupleValide = memeSigne(vitesseComposante,couple);
@@ -56,7 +56,7 @@ int main(int argc, const char * argv []){
         analyseMouvement(vitesseComposante,couple,vecteur);
 
         //nouvelle analyse
-        cout << MSSG_QUESTION_CONTINUER << endl;
+        cout << MSSG_QUESTION_CONTINUER << ESPACE_DE_FIN;
         cin >> reponse;
         if(reponse.compare("n") == 0){
             finProg = true;
@@ -115,7 +115,7 @@ double demandeDouble(string mssgErreur, string mssgRequete){
         }
         if(!valide){
             cout << mssgErreur << endl;
-            cout << mssgRequete << endl;
+            cout << mssgRequete << ESPACE_DE_FIN;
         }
         
     } while (!valide);

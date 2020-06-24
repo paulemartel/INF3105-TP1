@@ -23,7 +23,7 @@ string const MSSG_REQUETE_VITESSE =
 "Quelle est la vitesse de rotation de la premiere composante ?";
 string const MSSG_REQUETE_COUPLE = 
 "Quel est le couple applique a la premiere composante ?";
-
+string const ESPACE_DE_FIN = " ";
 
 /* Message d'erreur */
 
